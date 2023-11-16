@@ -185,13 +185,16 @@ class Ui_MainWindow(object):
 
     def goto_graph_page(self):
 
+        self.timer.stop()
+        self.capture_timer.stop()
+
         y_axs = self.data_log
         x_axs = [i * 5 for i in range(len(y_axs))]
         self.sc.axes.plot(x_axs, y_axs)
         self.gridLayout_2.addWidget(self.sc)
 
         # removing log rewrite
-        for i in reversed(range(self.verticalLayout_2.count()-1)):
+        for i in reversed(range(self.verticalLayout_2.count())):
             self.verticalLayout_2.itemAt(i).widget().deleteLater()
 
         self.stackedWidget.setCurrentIndex(2)
