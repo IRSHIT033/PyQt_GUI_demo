@@ -751,144 +751,258 @@ class Ui_MainWindow(object):
         self.frame.setObjectName("frame")
         self.verticalLayout_7.addWidget(self.frame)
         self.main_screen.addWidget(self.home_page)
+
+        # -------------------------logs screeen----------------------#
         self.logs_page = QtWidgets.QWidget()
+        self.logs_page.setStyleSheet("background-color:#ffffff;")
         self.logs_page.setObjectName("logs_page")
         self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.logs_page)
         self.verticalLayout_13.setObjectName("verticalLayout_13")
-        spacerItem4 = QtWidgets.QSpacerItem(
-            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_13.addItem(spacerItem4)
-        self.widget_4 = QtWidgets.QWidget(self.logs_page)
-        self.widget_4.setObjectName("widget_4")
-        self.horizontalLayout_23 = QtWidgets.QHBoxLayout(self.widget_4)
-        self.horizontalLayout_23.setObjectName("horizontalLayout_23")
-        self.widget_14 = QtWidgets.QWidget(self.widget_4)
-        self.widget_14.setMinimumSize(QtCore.QSize(300, 0))
-        self.widget_14.setMaximumSize(QtCore.QSize(300, 50))
+        self.widget_22 = QtWidgets.QWidget(self.logs_page)
+        self.widget_22.setMinimumSize(QtCore.QSize(500, 60))
+        self.widget_22.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.widget_22.setObjectName("widget_22")
+        self.horizontalLayout_14 = QtWidgets.QHBoxLayout(self.widget_22)
+        self.horizontalLayout_14.setObjectName("horizontalLayout_14")
+        self.human_data_btn = QtWidgets.QPushButton(self.widget_22)
+        self.human_data_btn.setMaximumSize(QtCore.QSize(200, 60))
         font = QtGui.QFont()
-        font.setPointSize(12)
-        self.widget_14.setFont(font)
-        self.widget_14.setStyleSheet("background-color:#434f65;\n"
-                                     "color:#f1f1f1;\n"
-                                     "border-radius:20px;")
-        self.widget_14.setObjectName("widget_14")
-        self.horizontalLayout_17 = QtWidgets.QHBoxLayout(self.widget_14)
-        self.horizontalLayout_17.setObjectName("horizontalLayout_17")
-        self.label_20 = QtWidgets.QLabel(self.widget_14)
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.human_data_btn.setFont(font)
+        self.human_data_btn.setStyleSheet("border-radius:10px;\n"
+                                          "background:#81dbcd;\n"
+                                          "border:1px solid #81dbcd;\n"
+                                          "color:#ffffff;")
+        self.human_data_btn.setObjectName("human_data_btn")
+        self.human_data_btn.clicked.connect(self.show_persons_data)
+        self.horizontalLayout_14.addWidget(self.human_data_btn)
+        self.alarm_log_btn = QtWidgets.QPushButton(self.widget_22)
+        self.alarm_log_btn.setMaximumSize(QtCore.QSize(200, 60))
+        self.alarm_log_btn.clicked.connect(self.show_alarms_log)
         font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_20.setFont(font)
-        self.label_20.setObjectName("label_20")
-        self.horizontalLayout_17.addWidget(
-            self.label_20, 0, QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-        self.horizontalLayout_23.addWidget(self.widget_14)
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.alarm_log_btn.setFont(font)
+        self.alarm_log_btn.setStyleSheet("border-radius:10px;\n"
+                                         "background:#ffffff;\n"
+                                         "border:1px solid #81dbcd;\n"
+                                         "color:#81dbcd;")
+        self.alarm_log_btn.setObjectName("alarm_log_btn")
+        self.horizontalLayout_14.addWidget(self.alarm_log_btn)
         self.verticalLayout_13.addWidget(
-            self.widget_4, 0, QtCore.Qt.AlignBottom)
-        self.data_container = QtWidgets.QWidget(self.logs_page)
-        self.data_container.setMinimumSize(QtCore.QSize(0, 100))
-        self.data_container.setMaximumSize(QtCore.QSize(16777215, 120))
-        self.data_container.setStyleSheet("#age_container, #name_container, #weight_container{\n"
-                                          "background: #ffffff;\n"
-                                          "border:0.5px solid #81dbcd;\n"
-                                          "border-radius:20px;\n"
-                                          "}")
-        self.data_container.setObjectName("data_container")
-        self.horizontalLayout_16 = QtWidgets.QHBoxLayout(self.data_container)
-        self.horizontalLayout_16.setContentsMargins(30, -1, 30, -1)
-        self.horizontalLayout_16.setSpacing(20)
+            self.widget_22, 0, QtCore.Qt.AlignLeft)
+        self.stackedWidget = QtWidgets.QStackedWidget(self.logs_page)
+        self.stackedWidget.setMinimumSize(QtCore.QSize(0, 0))
+        self.stackedWidget.setObjectName("stackedWidget")
+        self.alarm_logs = QtWidgets.QWidget()
+        self.alarm_logs.setObjectName("alarm_logs")
+        self.verticalLayout_22 = QtWidgets.QVBoxLayout(self.alarm_logs)
+        self.verticalLayout_22.setObjectName("verticalLayout_22")
+        self.scrollArea_2 = QtWidgets.QScrollArea(self.alarm_logs)
+        self.scrollArea_2.setStyleSheet("border:none")
+        self.scrollArea_2.setWidgetResizable(True)
+        self.scrollArea_2.setObjectName("scrollArea_2")
+        self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents_2.setGeometry(
+            QtCore.QRect(0, 0, 946, 683))
+        self.scrollAreaWidgetContents_2.setObjectName(
+            "scrollAreaWidgetContents_2")
+        self.verticalLayout_28 = QtWidgets.QVBoxLayout(
+            self.scrollAreaWidgetContents_2)
+        self.verticalLayout_28.setObjectName("verticalLayout_28")
+        self.alarm = QtWidgets.QWidget(self.scrollAreaWidgetContents_2)
+        self.alarm.setMaximumSize(QtCore.QSize(16777215, 80))
+        self.alarm.setStyleSheet("#alarm{\n"
+                                 "border:1px solid #81dbcd;\n"
+                                 "border-radius:15px;\n"
+                                 "}")
+        self.alarm.setObjectName("alarm")
+        self.horizontalLayout_16 = QtWidgets.QHBoxLayout(self.alarm)
         self.horizontalLayout_16.setObjectName("horizontalLayout_16")
-        self.name_container = QtWidgets.QWidget(self.data_container)
-        self.name_container.setStyleSheet("")
-        self.name_container.setObjectName("name_container")
-        self.horizontalLayout_18 = QtWidgets.QHBoxLayout(self.name_container)
-        self.horizontalLayout_18.setObjectName("horizontalLayout_18")
+        self.label_13 = QtWidgets.QLabel(self.alarm)
+        self.label_13.setMaximumSize(QtCore.QSize(60, 60))
+        self.label_13.setText("")
+        self.label_13.setPixmap(QtGui.QPixmap(
+            "./Assets/thermometer-hot-light.png"))
+        self.label_13.setScaledContents(True)
+        self.label_13.setObjectName("label_13")
+        self.horizontalLayout_16.addWidget(self.label_13)
+        spacerItem4 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_16.addItem(spacerItem4)
+        self.label_14 = QtWidgets.QLabel(self.alarm)
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_14.setFont(font)
+        self.label_14.setObjectName("label_14")
+        self.horizontalLayout_16.addWidget(self.label_14)
         spacerItem5 = QtWidgets.QSpacerItem(
             40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_18.addItem(spacerItem5)
-        self.label_18 = QtWidgets.QLabel(self.name_container)
+        self.horizontalLayout_16.addItem(spacerItem5)
+        self.widget_14 = QtWidgets.QWidget(self.alarm)
+        self.widget_14.setObjectName("widget_14")
+        self.verticalLayout_25 = QtWidgets.QVBoxLayout(self.widget_14)
+        self.verticalLayout_25.setObjectName("verticalLayout_25")
+        self.label_15 = QtWidgets.QLabel(self.widget_14)
         font = QtGui.QFont()
-        font.setPointSize(13)
-        self.label_18.setFont(font)
-        self.label_18.setScaledContents(True)
-        self.label_18.setWordWrap(True)
-        self.label_18.setObjectName("label_18")
-        self.horizontalLayout_18.addWidget(self.label_18)
+        font.setPointSize(10)
+        self.label_15.setFont(font)
+        self.label_15.setObjectName("label_15")
+        self.verticalLayout_25.addWidget(self.label_15)
+        self.label_16 = QtWidgets.QLabel(self.widget_14)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_16.setFont(font)
+        self.label_16.setObjectName("label_16")
+        self.verticalLayout_25.addWidget(self.label_16)
+        self.horizontalLayout_16.addWidget(self.widget_14)
+        self.verticalLayout_28.addWidget(self.alarm)
         spacerItem6 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_18.addItem(spacerItem6)
-        self.horizontalLayout_16.addWidget(self.name_container)
-        self.age_container = QtWidgets.QWidget(self.data_container)
-        self.age_container.setObjectName("age_container")
-        self.horizontalLayout_20 = QtWidgets.QHBoxLayout(self.age_container)
-        self.horizontalLayout_20.setObjectName("horizontalLayout_20")
-        spacerItem7 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_20.addItem(spacerItem7)
-        self.label_19 = QtWidgets.QLabel(self.age_container)
+            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_28.addItem(spacerItem6)
+        self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
+        self.verticalLayout_22.addWidget(self.scrollArea_2)
+        self.stackedWidget.addWidget(self.alarm_logs)
+        self.human_data = QtWidgets.QWidget()
+        self.human_data.setObjectName("human_data")
+        self.verticalLayout_23 = QtWidgets.QVBoxLayout(self.human_data)
+        self.verticalLayout_23.setObjectName("verticalLayout_23")
+        self.widget_4 = QtWidgets.QWidget(self.human_data)
+        self.widget_4.setMinimumSize(QtCore.QSize(0, 60))
+        self.widget_4.setObjectName("widget_4")
+        self.horizontalLayout_15 = QtWidgets.QHBoxLayout(self.widget_4)
+        self.horizontalLayout_15.setObjectName("horizontalLayout_15")
+        self.pushButton_5 = QtWidgets.QPushButton(self.widget_4)
+        self.pushButton_5.setMinimumSize(QtCore.QSize(0, 50))
+        self.pushButton_5.setMaximumSize(QtCore.QSize(300, 16777215))
         font = QtGui.QFont()
-        font.setPointSize(13)
-        self.label_19.setFont(font)
-        self.label_19.setScaledContents(True)
-        self.label_19.setWordWrap(True)
-        self.label_19.setObjectName("label_19")
-        self.horizontalLayout_20.addWidget(self.label_19)
-        spacerItem8 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_20.addItem(spacerItem8)
-        self.horizontalLayout_16.addWidget(self.age_container)
-        self.weight_container = QtWidgets.QWidget(self.data_container)
-        self.weight_container.setObjectName("weight_container")
-        self.horizontalLayout_19 = QtWidgets.QHBoxLayout(self.weight_container)
+        font.setPointSize(11)
+        self.pushButton_5.setFont(font)
+        self.pushButton_5.setStyleSheet("background:#808080;\n"
+                                        "border-radius:10px;\n"
+                                        "color:#ffffff")
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.horizontalLayout_15.addWidget(self.pushButton_5)
+        self.verticalLayout_23.addWidget(self.widget_4)
+        self.scrollArea = QtWidgets.QScrollArea(self.human_data)
+        self.scrollArea.setStyleSheet("border:none")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 946, 535))
+        self.scrollAreaWidgetContents.setStyleSheet("#Patientdetails{\n"
+                                                    "border-radius:10px;\n"
+                                                    "border:1px solid #81dbcd;\n"
+                                                    "color:#808080;\n"
+                                                    "}")
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.verticalLayout_26 = QtWidgets.QVBoxLayout(
+            self.scrollAreaWidgetContents)
+        self.verticalLayout_26.setObjectName("verticalLayout_26")
+        self.Patientdetails_2 = QtWidgets.QWidget(
+            self.scrollAreaWidgetContents)
+        self.Patientdetails_2.setMaximumSize(QtCore.QSize(16777215, 100))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.Patientdetails_2.setFont(font)
+        self.Patientdetails_2.setStyleSheet("background:#81dbcd;\n"
+                                            "color:#ffffff;\n"
+                                            "border-radius:10px\n"
+                                            "")
+        self.Patientdetails_2.setObjectName("Patientdetails_2")
+        self.verticalLayout_27 = QtWidgets.QVBoxLayout(self.Patientdetails_2)
+        self.verticalLayout_27.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_27.setSpacing(0)
+        self.verticalLayout_27.setObjectName("verticalLayout_27")
+        self.widget_25 = QtWidgets.QWidget(self.Patientdetails_2)
+        self.widget_25.setObjectName("widget_25")
+        self.horizontalLayout_19 = QtWidgets.QHBoxLayout(self.widget_25)
         self.horizontalLayout_19.setObjectName("horizontalLayout_19")
-        spacerItem9 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_19.addItem(spacerItem9)
-        self.label_21 = QtWidgets.QLabel(self.weight_container)
+        self.label_19 = QtWidgets.QLabel(self.widget_25)
         font = QtGui.QFont()
-        font.setPointSize(13)
+        font.setPointSize(10)
+        self.label_19.setFont(font)
+        self.label_19.setObjectName("label_19")
+        self.horizontalLayout_19.addWidget(self.label_19)
+        self.verticalLayout_27.addWidget(self.widget_25)
+        self.widget_26 = QtWidgets.QWidget(self.Patientdetails_2)
+        self.widget_26.setObjectName("widget_26")
+        self.horizontalLayout_20 = QtWidgets.QHBoxLayout(self.widget_26)
+        self.horizontalLayout_20.setContentsMargins(9, 0, 6, 0)
+        self.horizontalLayout_20.setSpacing(0)
+        self.horizontalLayout_20.setObjectName("horizontalLayout_20")
+        self.label_20 = QtWidgets.QLabel(self.widget_26)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_20.setFont(font)
+        self.label_20.setObjectName("label_20")
+        self.horizontalLayout_20.addWidget(self.label_20)
+        self.label_21 = QtWidgets.QLabel(self.widget_26)
+        font = QtGui.QFont()
+        font.setPointSize(10)
         self.label_21.setFont(font)
-        self.label_21.setScaledContents(True)
-        self.label_21.setWordWrap(True)
         self.label_21.setObjectName("label_21")
-        self.horizontalLayout_19.addWidget(self.label_21)
-        spacerItem10 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_19.addItem(spacerItem10)
-        self.horizontalLayout_16.addWidget(self.weight_container)
-        self.verticalLayout_13.addWidget(self.data_container)
-        self.widget_6 = QtWidgets.QWidget(self.logs_page)
-        self.widget_6.setObjectName("widget_6")
-        self.horizontalLayout_22 = QtWidgets.QHBoxLayout(self.widget_6)
-        self.horizontalLayout_22.setContentsMargins(-1, 25, -1, -1)
-        self.horizontalLayout_22.setObjectName("horizontalLayout_22")
-        self.widget_12 = QtWidgets.QWidget(self.widget_6)
-        self.widget_12.setMinimumSize(QtCore.QSize(180, 0))
-        self.widget_12.setMaximumSize(QtCore.QSize(180, 50))
-        self.widget_12.setStyleSheet("background-color:#81dbcd;\n"
-                                     "color:#f1f1f1;\n"
-                                     "border-radius:20px;")
-        self.widget_12.setObjectName("widget_12")
-        self.horizontalLayout_21 = QtWidgets.QHBoxLayout(self.widget_12)
-        self.horizontalLayout_21.setObjectName("horizontalLayout_21")
-        spacerItem11 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_21.addItem(spacerItem11)
-        self.label_22 = QtWidgets.QLabel(self.widget_12)
+        self.horizontalLayout_20.addWidget(self.label_21)
+        self.label_22 = QtWidgets.QLabel(self.widget_26)
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setPointSize(10)
         self.label_22.setFont(font)
         self.label_22.setObjectName("label_22")
-        self.horizontalLayout_21.addWidget(self.label_22)
-        spacerItem12 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_21.addItem(spacerItem12)
-        self.horizontalLayout_22.addWidget(self.widget_12)
-        self.verticalLayout_13.addWidget(
-            self.widget_6, 0, QtCore.Qt.AlignHCenter | QtCore.Qt.AlignTop)
-        spacerItem13 = QtWidgets.QSpacerItem(
+        self.horizontalLayout_20.addWidget(self.label_22)
+        self.verticalLayout_27.addWidget(self.widget_26)
+        self.widget_27 = QtWidgets.QWidget(self.Patientdetails_2)
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.widget_27.setFont(font)
+        self.widget_27.setObjectName("widget_27")
+        self.horizontalLayout_21 = QtWidgets.QHBoxLayout(self.widget_27)
+        self.horizontalLayout_21.setContentsMargins(-1, -1, 6, 6)
+        self.horizontalLayout_21.setObjectName("horizontalLayout_21")
+        self.label_38 = QtWidgets.QLabel(self.widget_27)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_38.setFont(font)
+        self.label_38.setObjectName("label_38")
+        self.horizontalLayout_21.addWidget(self.label_38)
+        self.label_42 = QtWidgets.QLabel(self.widget_27)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_42.setFont(font)
+        self.label_42.setObjectName("label_42")
+        self.horizontalLayout_21.addWidget(self.label_42)
+        self.verticalLayout_27.addWidget(self.widget_27)
+        self.verticalLayout_26.addWidget(self.Patientdetails_2)
+        spacerItem7 = QtWidgets.QSpacerItem(
             20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_13.addItem(spacerItem13)
+        self.verticalLayout_26.addItem(spacerItem7)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout_23.addWidget(self.scrollArea)
+        self.widget_6 = QtWidgets.QWidget(self.human_data)
+        self.widget_6.setObjectName("widget_6")
+        self.verticalLayout_24 = QtWidgets.QVBoxLayout(self.widget_6)
+        self.verticalLayout_24.setObjectName("verticalLayout_24")
+        self.pushButton_6 = QtWidgets.QPushButton(self.widget_6)
+        self.pushButton_6.setMinimumSize(QtCore.QSize(200, 50))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.pushButton_6.setFont(font)
+        self.pushButton_6.setStyleSheet("background:#81dbcd;\n"
+                                        "color:#ffffff;\n"
+                                        "border-radius:10px;")
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.verticalLayout_24.addWidget(
+            self.pushButton_6, 0, QtCore.Qt.AlignHCenter)
+        self.verticalLayout_23.addWidget(self.widget_6)
+        self.stackedWidget.addWidget(self.human_data)
+        self.verticalLayout_13.addWidget(self.stackedWidget)
         self.main_screen.addWidget(self.logs_page)
+        # -----------------------------------------------------------#
+
         self.graph_page = QtWidgets.QWidget()
         self.graph_page.setObjectName("graph_page")
         self.main_screen.addWidget(self.graph_page)
@@ -1070,7 +1184,39 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.main_screen.setCurrentIndex(0)
         self.ModeStackedWindow.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def show_persons_data(self):
+        self.stackedWidget.setCurrentIndex(1)
+        self.human_data_btn.setStyleSheet(
+            "border-radius:10px;\n"
+            "background:#81dbcd;\n"
+            "border:1px solid #81dbcd;\n"
+            "color:#ffffff;"
+        )
+        self.alarm_log_btn.setStyleSheet(
+            "border-radius:10px;\n"
+            "background:#ffffff;\n"
+            "border:1px solid #81dbcd;\n"
+            "color:#81dbcd;"
+        )
+
+    def show_alarms_log(self):
+        self.stackedWidget.setCurrentIndex(0)
+        self.human_data_btn.setStyleSheet(
+            "border-radius:10px;\n"
+            "background:#ffffff;\n"
+            "border:1px solid #81dbcd;\n"
+            "color:#81dbcd;"
+
+        )
+        self.alarm_log_btn.setStyleSheet(
+            "border-radius:10px;\n"
+            "background:#81dbcd;\n"
+            "border:1px solid #81dbcd;\n"
+            "color:#ffffff;"
+        )
 
     def SetTemperature(self):
         Dialog = QtWidgets.QDialog(self.centralwidget)
@@ -1158,17 +1304,26 @@ class Ui_MainWindow(object):
         self.auto_btn.setText(_translate("MainWindow", "Auto Mode"))
         self.manual_btn.setText(_translate("MainWindow", "Manual Mode"))
         self.preheat_btn.setText(_translate("MainWindow", "Preheat Mode"))
-        self.label_20.setText(_translate(
-            "MainWindow", "Export all data as .csv file"))
-        self.label_18.setText(_translate("MainWindow", "John doe"))
-        self.label_19.setText(_translate("MainWindow", "1 Yrs"))
-        self.label_21.setText(_translate("MainWindow", "1.5 Kg"))
-        self.label_22.setText(_translate("MainWindow", "Enter Record"))
         self.label_4.setText(_translate("MainWindow", "Alarm"))
         self.label_6.setText(_translate("MainWindow", "Data logs"))
         self.label_7.setText(_translate("MainWindow", "Graph"))
         self.label_8.setText(_translate("MainWindow", "Apgar Timer"))
         self.label_40.setText(_translate("MainWindow", "CPR Timer"))
+        self.human_data_btn.setText(_translate("MainWindow", "Human Data"))
+        self.alarm_log_btn.setText(_translate("MainWindow", "Alarms log"))
+        self.label_14.setText(_translate("MainWindow", "Temperature Hot"))
+        self.label_15.setText(_translate("MainWindow", "Date: 12/02/2023"))
+        self.label_16.setText(_translate("MainWindow", "Time: 12:21"))
+        self.pushButton_5.setText(_translate(
+            "MainWindow", "Export as .csv file"))
+        self.label_19.setText(_translate("MainWindow", "Patient Id: 1298"))
+        self.label_20.setText(_translate(
+            "MainWindow", "Name: Irshit Mukherjee"))
+        self.label_21.setText(_translate("MainWindow", "Weight: 5000gm"))
+        self.label_22.setText(_translate("MainWindow", "Gender: Male"))
+        self.label_38.setText(_translate("MainWindow", "Date: 12/02/2023"))
+        self.label_42.setText(_translate("MainWindow", "Time: 12:20 pm"))
+        self.pushButton_6.setText(_translate("MainWindow", "Add data"))
 
 
 if __name__ == "__main__":
