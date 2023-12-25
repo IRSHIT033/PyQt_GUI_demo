@@ -34,7 +34,7 @@ class SetTemp_Dialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.label.setFont(font)
-        self.label.setStyleSheet("color:#81dbcd")
+        self.label.setStyleSheet("color:#4169E1")
         self.label.setObjectName("label")
         self.horizontalLayout_2.addWidget(self.label)
         spacerItem1 = QtWidgets.QSpacerItem(
@@ -95,14 +95,14 @@ class SetTemp_Dialog(object):
                                          "{\n"
                                          "image: url(Assets/caret-up-bold.png);\n"
                                          "background : #ffffff;\n"
-                                         "color:#81dbcd;\n"
+                                         "color:#4169E1;\n"
                                          "border:none;\n"
                                          "}\n"
                                          "QDoubleSpinBox::down-arrow\n"
                                          "{\n"
                                          "image: url(Assets/caret-down-bold.png);\n"
                                          "background : #ffffff;\n"
-                                         "color:#81dbcd;\n"
+                                         "color:#4169E1;\n"
                                          "border:none;\n"
                                          "}")
         self.doubleSpinBox.setButtonSymbols(
@@ -130,7 +130,7 @@ class SetTemp_Dialog(object):
         font.setPointSize(12)
         self.pushButton.setFont(font)
         self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.BusyCursor))
-        self.pushButton.setStyleSheet("background:#81dbcd;\n"
+        self.pushButton.setStyleSheet("background:#4169E1;\n"
                                       "border-radius:20px;\n"
                                       "color:#ffffff;")
         self.pushButton.setObjectName("pushButton")

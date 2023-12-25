@@ -18,7 +18,7 @@ class Ui_Alarm_widget(object):
         Alarm_widget.setStyleSheet("\n"
                                    "#Alarm_widget{\n"
                                    "background:#ffffff;\n"
-                                   "border:1px solid #81dbcd;\n"
+                                   "border:1px solid #4169E1;\n"
                                    "border-radius:20px;\n"
                                    "}")
         self.verticalLayout = QtWidgets.QVBoxLayout(Alarm_widget)
@@ -73,7 +73,7 @@ class Ui_Alarm_widget(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("background:#81dbcd;\n"
+        self.pushButton.setStyleSheet("background:#4169E1;\n"
                                       "border-radius:20px;\n"
                                       "color:#ffffff;")
         self.pushButton.setObjectName("pushButton")

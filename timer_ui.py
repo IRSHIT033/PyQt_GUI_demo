@@ -40,7 +40,7 @@ class Timer_UI(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_12.setFont(font)
-        self.label_12.setStyleSheet("color:#81dbcd")
+        self.label_12.setStyleSheet("color:#4169E1")
         self.label_12.setObjectName("label_12")
         self.horizontalLayout_13.addWidget(
             self.label_12, 0, QtCore.Qt.AlignHCenter)
@@ -59,7 +59,7 @@ class Timer_UI(object):
         font.setBold(True)
         font.setWeight(75)
         self.timer_text.setFont(font)
-        self.timer_text.setStyleSheet("color:#81dbcd")
+        self.timer_text.setStyleSheet("color:#4169E1")
         self.timer_text.setObjectName("timer_text")
         self.horizontalLayout_10.addWidget(self.timer_text)
         self.start_stop_btn = QtWidgets.QPushButton(self.widget_21)
@@ -69,7 +69,7 @@ class Timer_UI(object):
         font.setBold(True)
         font.setWeight(75)
         self.start_stop_btn.setFont(font)
-        self.start_stop_btn.setStyleSheet("background:#81dbcd;\n"
+        self.start_stop_btn.setStyleSheet("background:#4169E1;\n"
                                           "color:#ffffff;")
         self.start_stop_btn.setObjectName("start_stop_btn")
         self.horizontalLayout_10.addWidget(self.start_stop_btn)
@@ -80,7 +80,7 @@ class Timer_UI(object):
         font.setBold(True)
         font.setWeight(75)
         self.reset_btn.setFont(font)
-        self.reset_btn.setStyleSheet("background:#81dbcd;\n"
+        self.reset_btn.setStyleSheet("background:#4169E1;\n"
                                      "color:#ffffff;")
         self.reset_btn.setObjectName("reset_btn")
         self.horizontalLayout_10.addWidget(self.reset_btn)

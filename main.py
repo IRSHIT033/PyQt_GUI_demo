@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from sidebar import Ui_SideBar
 import websocket_handler
 import set_temp
 import alarm
@@ -10,7 +11,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1151, 900)
         MainWindow.setStyleSheet("#cprtime_nav_item ,#alarm_nav_item, #apgartime_nav_item, #logs_nav_item, #graph_nav_item{\n"
-                                 "   border:0.8px solid #81dbcd;\n"
+                                 "   border:0.8px solid #4169E1;\n"
                                  "   border-radius:25px;\n"
                                  "   background-color:#ffffff;\n"
                                  "}\n"
@@ -26,14 +27,14 @@ class Ui_MainWindow(object):
                                  "\n"
                                  "#baby_temp_div, #set_temp_div, #Power_preheat, #baby_tmp_preheat\n"
                                  "#light_level, #noice_level {\n"
-                                 "   border:0.8px solid #81dbcd;\n"
+                                 "   border:0.8px solid #4169E1;\n"
                                  "   border-radius:25px;\n"
                                  " background:#ffffff;\n"
                                  "}\n"
                                  "\n"
                                  "#auto_btn, #manual_btn, #preheat_btn{\n"
                                  "border-radius:25px;\n"
-                                 "background-color:#81dbcd;\n"
+                                 "background-color:#4169E1;\n"
                                  "color:#f4f4f5;\n"
                                  "}\n"
                                  "\n"
@@ -51,75 +52,75 @@ class Ui_MainWindow(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.Header = QtWidgets.QWidget(self.centralwidget)
-        self.Header.setMinimumSize(QtCore.QSize(0, 120))
-        self.Header.setMaximumSize(QtCore.QSize(16777215, 120))
-        font = QtGui.QFont()
-        font.setPointSize(30)
-        self.Header.setFont(font)
-        self.Header.setObjectName("Header")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.Header)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_2.setSpacing(0)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.date_widget = QtWidgets.QWidget(self.Header)
-        self.date_widget.setObjectName("date_widget")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.date_widget)
-        self.horizontalLayout_3.setContentsMargins(20, -1, -1, -1)
-        self.horizontalLayout_3.setSpacing(12)
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.date_icon = QtWidgets.QLabel(self.date_widget)
-        self.date_icon.setMaximumSize(QtCore.QSize(30, 30))
-        self.date_icon.setBaseSize(QtCore.QSize(20, 20))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        font.setKerning(True)
-        self.date_icon.setFont(font)
-        self.date_icon.setText("")
-        self.date_icon.setPixmap(QtGui.QPixmap(
-            "./Assets/date_range.png"))
-        self.date_icon.setScaledContents(True)
-        self.date_icon.setObjectName("date_icon")
-        self.horizontalLayout_3.addWidget(
-            self.date_icon, 0, QtCore.Qt.AlignVCenter)
-        self.date_text = QtWidgets.QLabel(self.date_widget)
-        self.date_text.setMaximumSize(QtCore.QSize(150, 16777215))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        font.setBold(False)
-        font.setWeight(50)
-        self.date_text.setFont(font)
-        self.date_text.setScaledContents(False)
-        self.date_text.setWordWrap(True)
-        self.date_text.setObjectName("date_text")
-        self.horizontalLayout_3.addWidget(self.date_text)
-        self.time_icon = QtWidgets.QLabel(self.date_widget)
-        self.time_icon.setMaximumSize(QtCore.QSize(30, 30))
-        self.time_icon.setText("")
-        self.time_icon.setPixmap(QtGui.QPixmap(
-            "./Assets/access_time.png"))
-        self.time_icon.setScaledContents(True)
-        self.time_icon.setObjectName("time_icon")
-        self.horizontalLayout_3.addWidget(
-            self.time_icon, 0, QtCore.Qt.AlignVCenter)
-        self.time_text = QtWidgets.QLabel(self.date_widget)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        font.setBold(False)
-        font.setWeight(50)
-        self.time_text.setFont(font)
-        self.time_text.setObjectName("time_text")
-        self.horizontalLayout_3.addWidget(self.time_text)
+        # self.Header = QtWidgets.QWidget(self.centralwidget)
+        # self.Header.setMinimumSize(QtCore.QSize(0, 120))
+        # self.Header.setMaximumSize(QtCore.QSize(16777215, 120))
+        # font = QtGui.QFont()
+        # font.setPointSize(30)
+        # self.Header.setFont(font)
+        # self.Header.setObjectName("Header")
+        # self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.Header)
+        # self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        # self.horizontalLayout_2.setSpacing(0)
+        # self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        # self.date_widget = QtWidgets.QWidget(self.Header)
+        # self.date_widget.setObjectName("date_widget")
+        # self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.date_widget)
+        # self.horizontalLayout_3.setContentsMargins(20, -1, -1, -1)
+        # self.horizontalLayout_3.setSpacing(12)
+        # self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        # self.date_icon = QtWidgets.QLabel(self.date_widget)
+        # self.date_icon.setMaximumSize(QtCore.QSize(30, 30))
+        # self.date_icon.setBaseSize(QtCore.QSize(20, 20))
+        # font = QtGui.QFont()
+        # font.setPointSize(8)
+        # font.setKerning(True)
+        # self.date_icon.setFont(font)
+        # self.date_icon.setText("")
+        # self.date_icon.setPixmap(QtGui.QPixmap(
+        #     "./Assets/date_range.png"))
+        # self.date_icon.setScaledContents(True)
+        # self.date_icon.setObjectName("date_icon")
+        # self.horizontalLayout_3.addWidget(
+        #     self.date_icon, 0, QtCore.Qt.AlignVCenter)
+        # self.date_text = QtWidgets.QLabel(self.date_widget)
+        # self.date_text.setMaximumSize(QtCore.QSize(150, 16777215))
+        # font = QtGui.QFont()
+        # font.setPointSize(11)
+        # font.setBold(False)
+        # font.setWeight(50)
+        # self.date_text.setFont(font)
+        # self.date_text.setScaledContents(False)
+        # self.date_text.setWordWrap(True)
+        # self.date_text.setObjectName("date_text")
+        # self.horizontalLayout_3.addWidget(self.date_text)
+        # self.time_icon = QtWidgets.QLabel(self.date_widget)
+        # self.time_icon.setMaximumSize(QtCore.QSize(30, 30))
+        # self.time_icon.setText("")
+        # self.time_icon.setPixmap(QtGui.QPixmap(
+        #     "./Assets/access_time.png"))
+        # self.time_icon.setScaledContents(True)
+        # self.time_icon.setObjectName("time_icon")
+        # self.horizontalLayout_3.addWidget(
+        #     self.time_icon, 0, QtCore.Qt.AlignVCenter)
+        # self.time_text = QtWidgets.QLabel(self.date_widget)
+        # font = QtGui.QFont()
+        # font.setPointSize(11)
+        # font.setBold(False)
+        # font.setWeight(50)
+        # self.time_text.setFont(font)
+        # self.time_text.setObjectName("time_text")
+        # self.horizontalLayout_3.addWidget(self.time_text)
 
-        # setup UI for timer
-        self.timerUI = timer_ui.Timer_UI()
-        self.timerUI.setupUi(self.date_widget)
+        # # setup UI for timer
+        # self.timerUI = timer_ui.Timer_UI()
+        # self.timerUI.setupUi(self.date_widget)
 
-        self.horizontalLayout_3.addWidget(
-            self.timerUI.widget_11, 0, QtCore.Qt.AlignHCenter)
+        # self.horizontalLayout_3.addWidget(
+        #     self.timerUI.widget_11, 0, QtCore.Qt.AlignHCenter)
 
-        self.horizontalLayout_2.addWidget(self.date_widget)
-        self.verticalLayout.addWidget(self.Header)
+        # self.horizontalLayout_2.addWidget(self.date_widget)
+        #self.verticalLayout.addWidget(self.Header)
         self.Main_screen_container = QtWidgets.QWidget(self.centralwidget)
         self.Main_screen_container.setObjectName("Main_screen_container")
         self.horizontalLayout = QtWidgets.QHBoxLayout(
@@ -177,7 +178,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(4)
         self.ModeStackedWindow.setFont(font)
-        self.ModeStackedWindow.setStyleSheet("color:#81dbcd;\n"
+        self.ModeStackedWindow.setStyleSheet("color:#4169E1;\n"
                                              "background:#ffffff")
         self.ModeStackedWindow.setObjectName("ModeStackedWindow")
         self.ManualMode = QtWidgets.QWidget()
@@ -233,7 +234,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.pushButton.setFont(font)
-        self.pushButton.setStyleSheet("background-color:#81dbcd;\n"
+        self.pushButton.setStyleSheet("background-color:#4169E1;\n"
                                       "color:#ffffff;\n"
                                       "border-radius:25px;")
         icon = QtGui.QIcon()
@@ -253,7 +254,7 @@ class Ui_MainWindow(object):
         self.Temp_container_3.setMinimumSize(QtCore.QSize(400, 0))
         self.Temp_container_3.setStyleSheet("#light_level_div_2, #noice_div_2, #power_div_2 {\n"
                                             "border-radius:25px;\n"
-                                            "border:1px solid #81dbcd;\n"
+                                            "border:1px solid #4169E1;\n"
                                             "}")
         self.Temp_container_3.setObjectName("Temp_container_3")
         self.verticalLayout_21 = QtWidgets.QVBoxLayout(self.Temp_container_3)
@@ -303,7 +304,7 @@ class Ui_MainWindow(object):
         self.light_level_div_2.setFont(font)
         self.light_level_div_2.setStyleSheet("#light_level{\n"
                                              "   border-radius: 25px;\n"
-                                             "     border:1px solid #81dbcd;\n"
+                                             "     border:1px solid #4169E1;\n"
                                              "background:#ffffff\n"
                                              "}")
         self.light_level_div_2.setObjectName("light_level_div_2")
@@ -337,7 +338,7 @@ class Ui_MainWindow(object):
         self.power_div_2.setFont(font)
         self.power_div_2.setStyleSheet("#light_level{\n"
                                        "   border-radius: 25px;\n"
-                                       "     border:1px solid #81dbcd;\n"
+                                       "     border:1px solid #4169E1;\n"
                                        "background:#ffffff\n"
                                        "}")
         self.power_div_2.setObjectName("power_div_2")
@@ -461,7 +462,7 @@ class Ui_MainWindow(object):
         self.light_level.setFont(font)
         self.light_level.setStyleSheet("#light_level{\n"
                                        "   border-radius: 25px;\n"
-                                       "     border:1px solid #81dbcd;\n"
+                                       "     border:1px solid #4169E1;\n"
                                        "background:#ffffff\n"
                                        "}")
         self.light_level.setObjectName("light_level")
@@ -518,7 +519,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_35.setObjectName("horizontalLayout_35")
         self.widget_17 = QtWidgets.QWidget(self.baby_tmp_container)
         self.widget_17.setStyleSheet("   border-radius: 25px;\n"
-                                     "     border:1px solid #81dbcd;\n"
+                                     "     border:1px solid #4169E1;\n"
                                      "background:#ffffff")
         self.widget_17.setObjectName("widget_17")
         self.horizontalLayout_36 = QtWidgets.QHBoxLayout(self.widget_17)
@@ -556,7 +557,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.pushButton_2.setFont(font)
-        self.pushButton_2.setStyleSheet("background-color:#81dbcd;\n"
+        self.pushButton_2.setStyleSheet("background-color:#4169E1;\n"
                                         "color:#ffffff;\n"
                                         "border-radius:25px;")
         self.pushButton_2.setIcon(icon)
@@ -619,7 +620,7 @@ class Ui_MainWindow(object):
         self.light_level_div.setFont(font)
         self.light_level_div.setStyleSheet("#light_level{\n"
                                            "   border-radius: 25px;\n"
-                                           "     border:1px solid #81dbcd;\n"
+                                           "     border:1px solid #4169E1;\n"
                                            "background:#ffffff\n"
                                            "}")
         self.light_level_div.setObjectName("light_level_div")
@@ -652,7 +653,7 @@ class Ui_MainWindow(object):
         self.power_div.setFont(font)
         self.power_div.setStyleSheet("#light_level{\n"
                                      "   border-radius: 25px;\n"
-                                     "     border:1px solid #81dbcd;\n"
+                                     "     border:1px solid #4169E1;\n"
                                      "background:#ffffff\n"
                                      "}")
         self.power_div.setObjectName("power_div")
@@ -712,8 +713,8 @@ class Ui_MainWindow(object):
         self.auto_btn.clicked.connect(self.SetAutoMode)
         self.auto_btn.setStyleSheet("border-radius:25px;\n"
                                     "background:#ffffff;\n"
-                                    "border:1px solid #81dbcd;\n"
-                                    "color:#81dbcd;")
+                                    "border:1px solid #4169E1;\n"
+                                    "color:#4169E1;")
         self.auto_btn.setObjectName("auto_btn")
         self.horizontalLayout_11.addWidget(self.auto_btn)
         self.manual_btn = QtWidgets.QPushButton(self.widget_2)
@@ -737,8 +738,8 @@ class Ui_MainWindow(object):
         self.preheat_btn.setFont(font)
         self.preheat_btn.setStyleSheet("border-radius:25px;\n"
                                        "background:#ffffff;\n"
-                                       "border:1px solid #81dbcd;\n"
-                                       "color:#81dbcd;")
+                                       "border:1px solid #4169E1;\n"
+                                       "color:#4169E1;")
         self.preheat_btn.setObjectName("preheat_btn")
         self.horizontalLayout_11.addWidget(self.preheat_btn)
         self.verticalLayout_12.addWidget(
@@ -772,8 +773,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.human_data_btn.setFont(font)
         self.human_data_btn.setStyleSheet("border-radius:10px;\n"
-                                          "background:#81dbcd;\n"
-                                          "border:1px solid #81dbcd;\n"
+                                          "background:#4169E1;\n"
+                                          "border:1px solid #4169E1;\n"
                                           "color:#ffffff;")
         self.human_data_btn.setObjectName("human_data_btn")
         self.human_data_btn.clicked.connect(self.show_persons_data)
@@ -788,8 +789,8 @@ class Ui_MainWindow(object):
         self.alarm_log_btn.setFont(font)
         self.alarm_log_btn.setStyleSheet("border-radius:10px;\n"
                                          "background:#ffffff;\n"
-                                         "border:1px solid #81dbcd;\n"
-                                         "color:#81dbcd;")
+                                         "border:1px solid #4169E1;\n"
+                                         "color:#4169E1;")
         self.alarm_log_btn.setObjectName("alarm_log_btn")
         self.horizontalLayout_14.addWidget(self.alarm_log_btn)
         self.verticalLayout_13.addWidget(
@@ -816,7 +817,7 @@ class Ui_MainWindow(object):
         self.alarm = QtWidgets.QWidget(self.scrollAreaWidgetContents_2)
         self.alarm.setMaximumSize(QtCore.QSize(16777215, 80))
         self.alarm.setStyleSheet("#alarm{\n"
-                                 "border:1px solid #81dbcd;\n"
+                                 "border:1px solid #4169E1;\n"
                                  "border-radius:15px;\n"
                                  "}")
         self.alarm.setObjectName("alarm")
@@ -897,7 +898,7 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 946, 535))
         self.scrollAreaWidgetContents.setStyleSheet("#Patientdetails{\n"
                                                     "border-radius:10px;\n"
-                                                    "border:1px solid #81dbcd;\n"
+                                                    "border:1px solid #4169E1;\n"
                                                     "color:#808080;\n"
                                                     "}")
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
@@ -910,7 +911,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.Patientdetails_2.setFont(font)
-        self.Patientdetails_2.setStyleSheet("background:#81dbcd;\n"
+        self.Patientdetails_2.setStyleSheet("background:#4169E1;\n"
                                             "color:#ffffff;\n"
                                             "border-radius:10px\n"
                                             "")
@@ -991,7 +992,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(11)
         self.pushButton_6.setFont(font)
-        self.pushButton_6.setStyleSheet("background:#81dbcd;\n"
+        self.pushButton_6.setStyleSheet("background:#4169E1;\n"
                                         "color:#ffffff;\n"
                                         "border-radius:10px;")
         self.pushButton_6.setObjectName("pushButton_6")
@@ -1008,176 +1009,12 @@ class Ui_MainWindow(object):
         self.main_screen.addWidget(self.graph_page)
         self.horizontalLayout_8.addWidget(self.main_screen)
         self.horizontalLayout.addWidget(self.stacked_pages_container)
-        self.left_sidebar = QtWidgets.QWidget(self.Main_screen_container)
-        self.left_sidebar.setMinimumSize(QtCore.QSize(250, 200))
-        self.left_sidebar.setMaximumSize(QtCore.QSize(320, 16777215))
-        self.left_sidebar.setStyleSheet("#left_sidebar{\n"
-                                        "background-color:#ffffff;\n"
-                                        "}")
-        self.left_sidebar.setObjectName("left_sidebar")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.left_sidebar)
-        self.verticalLayout_2.setContentsMargins(20, 20, 20, 20)
-        self.verticalLayout_2.setSpacing(25)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.alarm_nav_item = QtWidgets.QFrame(self.left_sidebar)
-        self.alarm_nav_item.setMinimumSize(QtCore.QSize(170, 90))
-        self.alarm_nav_item.setMaximumSize(QtCore.QSize(300, 300))
-        self.alarm_nav_item.setStyleSheet("")
-        self.alarm_nav_item.setObjectName("alarm_nav_item")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.alarm_nav_item)
-        self.verticalLayout_3.setContentsMargins(3, 7, 3, 0)
-        self.verticalLayout_3.setSpacing(0)
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.widget_7 = QtWidgets.QWidget(self.alarm_nav_item)
-        self.widget_7.setObjectName("widget_7")
-        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.widget_7)
-        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_4.setSpacing(0)
-        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.label = QtWidgets.QLabel(self.widget_7)
-        self.label.setMinimumSize(QtCore.QSize(45, 45))
-        self.label.setMaximumSize(QtCore.QSize(45, 45))
-        self.label.setBaseSize(QtCore.QSize(60, 60))
-        self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("./Assets/bell-bold.png"))
-        self.label.setScaledContents(True)
-        self.label.setObjectName("label")
-        self.horizontalLayout_4.addWidget(self.label)
-        self.verticalLayout_3.addWidget(self.widget_7)
-        self.label_4 = QtWidgets.QLabel(self.alarm_nav_item)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.label_4.setFont(font)
-        self.label_4.setObjectName("label_4")
-        self.verticalLayout_3.addWidget(
-            self.label_4, 0, QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-        self.verticalLayout_2.addWidget(self.alarm_nav_item)
-        self.logs_nav_item = QtWidgets.QWidget(self.left_sidebar)
-
-        self.logs_nav_item.mousePressEvent = self.showLogsScreen
-        self.logs_nav_item.setMinimumSize(QtCore.QSize(170, 100))
-        self.logs_nav_item.setStyleSheet("#alarm_nav_item  {\n"
-                                         "     border-radius: 25px;\n"
-                                         "     border:2px solid #81dbcd;\n"
-                                         "}")
-        self.logs_nav_item.setObjectName("logs_nav_item")
-        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.logs_nav_item)
-        self.verticalLayout_4.setContentsMargins(3, 7, 3, 0)
-        self.verticalLayout_4.setSpacing(0)
-        self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.widget_8 = QtWidgets.QWidget(self.logs_nav_item)
-        self.widget_8.setObjectName("widget_8")
-        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.widget_8)
-        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_5.setSpacing(0)
-        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.label_2 = QtWidgets.QLabel(self.widget_8)
-        self.label_2.setMaximumSize(QtCore.QSize(45, 45))
-        self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap("./Assets/article-bold.png"))
-        self.label_2.setScaledContents(True)
-        self.label_2.setObjectName("label_2")
-        self.horizontalLayout_5.addWidget(self.label_2)
-        self.verticalLayout_4.addWidget(self.widget_8)
-        self.label_6 = QtWidgets.QLabel(self.logs_nav_item)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.label_6.setFont(font)
-        self.label_6.setObjectName("label_6")
-        self.verticalLayout_4.addWidget(
-            self.label_6, 0, QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-        self.verticalLayout_2.addWidget(self.logs_nav_item)
-        self.graph_nav_item = QtWidgets.QWidget(self.left_sidebar)
-        self.graph_nav_item.setMinimumSize(QtCore.QSize(170, 100))
-        self.graph_nav_item.setObjectName("graph_nav_item")
-        self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.graph_nav_item)
-        self.verticalLayout_5.setContentsMargins(3, 7, 3, 0)
-        self.verticalLayout_5.setSpacing(0)
-        self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.widget_9 = QtWidgets.QWidget(self.graph_nav_item)
-        self.widget_9.setObjectName("widget_9")
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.widget_9)
-        self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_6.setSpacing(0)
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.label_3 = QtWidgets.QLabel(self.widget_9)
-        self.label_3.setMaximumSize(QtCore.QSize(45, 45))
-        self.label_3.setText("")
-        self.label_3.setPixmap(QtGui.QPixmap(
-            "./Assets/chart-line-bold (2).png"))
-        self.label_3.setScaledContents(True)
-        self.label_3.setObjectName("label_3")
-        self.horizontalLayout_6.addWidget(self.label_3)
-        self.verticalLayout_5.addWidget(self.widget_9)
-        self.label_7 = QtWidgets.QLabel(self.graph_nav_item)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.label_7.setFont(font)
-        self.label_7.setObjectName("label_7")
-        self.verticalLayout_5.addWidget(
-            self.label_7, 0, QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-        self.verticalLayout_2.addWidget(self.graph_nav_item)
-        self.apgartime_nav_item = QtWidgets.QWidget(self.left_sidebar)
-        self.apgartime_nav_item.setMinimumSize(QtCore.QSize(170, 100))
-        self.apgartime_nav_item.setObjectName("apgartime_nav_item")
-        self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.apgartime_nav_item)
-        self.verticalLayout_6.setContentsMargins(3, 7, 3, 0)
-        self.verticalLayout_6.setSpacing(0)
-        self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.widget_10 = QtWidgets.QWidget(self.apgartime_nav_item)
-        self.widget_10.setMinimumSize(QtCore.QSize(170, 0))
-        self.widget_10.setObjectName("widget_10")
-        self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.widget_10)
-        self.horizontalLayout_7.setContentsMargins(2, 6, 2, 2)
-        self.horizontalLayout_7.setSpacing(0)
-        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        self.label_5 = QtWidgets.QLabel(self.widget_10)
-        self.label_5.setMaximumSize(QtCore.QSize(45, 45))
-        self.label_5.setText("")
-        self.label_5.setPixmap(QtGui.QPixmap("./Assets/timer-bold.png"))
-        self.label_5.setScaledContents(True)
-        self.label_5.setObjectName("label_5")
-        self.horizontalLayout_7.addWidget(self.label_5)
-        self.verticalLayout_6.addWidget(self.widget_10)
-        self.label_8 = QtWidgets.QLabel(self.apgartime_nav_item)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.label_8.setFont(font)
-        self.label_8.setObjectName("label_8")
-        self.verticalLayout_6.addWidget(
-            self.label_8, 0, QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-        self.verticalLayout_2.addWidget(self.apgartime_nav_item)
-        self.cprtime_nav_item = QtWidgets.QWidget(self.left_sidebar)
-        self.cprtime_nav_item.setMinimumSize(QtCore.QSize(170, 100))
-        self.cprtime_nav_item.setObjectName("cprtime_nav_item")
-        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.cprtime_nav_item)
-        self.verticalLayout_9.setContentsMargins(3, 7, 3, 0)
-        self.verticalLayout_9.setSpacing(0)
-        self.verticalLayout_9.setObjectName("verticalLayout_9")
-        self.widget_19 = QtWidgets.QWidget(self.cprtime_nav_item)
-        self.widget_19.setMinimumSize(QtCore.QSize(170, 0))
-        self.widget_19.setObjectName("widget_19")
-        self.horizontalLayout_25 = QtWidgets.QHBoxLayout(self.widget_19)
-        self.horizontalLayout_25.setContentsMargins(2, 6, 2, 2)
-        self.horizontalLayout_25.setSpacing(0)
-        self.horizontalLayout_25.setObjectName("horizontalLayout_25")
-        self.label_39 = QtWidgets.QLabel(self.widget_19)
-        self.label_39.setMaximumSize(QtCore.QSize(45, 45))
-        self.label_39.setText("")
-        self.label_39.setPixmap(QtGui.QPixmap("./Assets/timer-bold.png"))
-        self.label_39.setScaledContents(True)
-        self.label_39.setObjectName("label_39")
-        self.horizontalLayout_25.addWidget(self.label_39)
-        self.verticalLayout_9.addWidget(self.widget_19)
-        self.label_40 = QtWidgets.QLabel(self.cprtime_nav_item)
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.label_40.setFont(font)
-        self.label_40.setObjectName("label_40")
-        self.verticalLayout_9.addWidget(
-            self.label_40, 0, QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-        self.verticalLayout_2.addWidget(self.cprtime_nav_item)
-        self.horizontalLayout.addWidget(self.left_sidebar)
+        self.right_sidebar = QtWidgets.QWidget(self.Main_screen_container)
+        self.right_sidebar.resize(1000,1000)
+        ui = Ui_SideBar()
+        ui.setupUi(self.right_sidebar)
+        self.right_sidebar.show()
+        self.horizontalLayout.addWidget(self.right_sidebar)
         self.verticalLayout.addWidget(self.Main_screen_container)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -1191,15 +1028,15 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(1)
         self.human_data_btn.setStyleSheet(
             "border-radius:10px;\n"
-            "background:#81dbcd;\n"
-            "border:1px solid #81dbcd;\n"
+            "background:#4169E1;\n"
+            "border:1px solid #4169E1;\n"
             "color:#ffffff;"
         )
         self.alarm_log_btn.setStyleSheet(
             "border-radius:10px;\n"
             "background:#ffffff;\n"
-            "border:1px solid #81dbcd;\n"
-            "color:#81dbcd;"
+            "border:1px solid #4169E1;\n"
+            "color:#4169E1;"
         )
 
     def show_alarms_log(self):
@@ -1207,14 +1044,14 @@ class Ui_MainWindow(object):
         self.human_data_btn.setStyleSheet(
             "border-radius:10px;\n"
             "background:#ffffff;\n"
-            "border:1px solid #81dbcd;\n"
-            "color:#81dbcd;"
+            "border:1px solid #4169E1;\n"
+            "color:#4169E1;"
 
         )
         self.alarm_log_btn.setStyleSheet(
             "border-radius:10px;\n"
-            "background:#81dbcd;\n"
-            "border:1px solid #81dbcd;\n"
+            "background:#4169E1;\n"
+            "border:1px solid #4169E1;\n"
             "color:#ffffff;"
         )
 
@@ -1226,42 +1063,42 @@ class Ui_MainWindow(object):
 
     def SetAutoMode(self):
         self.ModeStackedWindow.setCurrentIndex(2)
-        self.auto_btn.setStyleSheet("background:#81dbcd;\n"
+        self.auto_btn.setStyleSheet("background:#4169E1;\n"
                                     "color:#ffffff\n")
         self.manual_btn.setStyleSheet("border-radius:25px;\n"
                                       "background:#ffffff;\n"
-                                      "border:1px solid #81dbcd;\n"
-                                      "color:#81dbcd;")
+                                      "border:1px solid #4169E1;\n"
+                                      "color:#4169E1;")
         self.preheat_btn.setStyleSheet("border-radius:25px;\n"
                                        "background:#ffffff;\n"
-                                       "border:1px solid #81dbcd;\n"
-                                       "color:#81dbcd;")
+                                       "border:1px solid #4169E1;\n"
+                                       "color:#4169E1;")
 
     def SetManualMode(self):
         self.ModeStackedWindow.setCurrentIndex(0)
-        self.manual_btn.setStyleSheet("background:#81dbcd;\n"
+        self.manual_btn.setStyleSheet("background:#4169E1;\n"
                                       "color:#ffffff\n")
         self.preheat_btn.setStyleSheet("border-radius:25px;\n"
                                        "background:#ffffff;\n"
-                                       "border:1px solid #81dbcd;\n"
-                                       "color:#81dbcd;")
+                                       "border:1px solid #4169E1;\n"
+                                       "color:#4169E1;")
         self.auto_btn.setStyleSheet("border-radius:25px;\n"
                                     "background:#ffffff;\n"
-                                    "border:1px solid #81dbcd;\n"
-                                    "color:#81dbcd;")
+                                    "border:1px solid #4169E1;\n"
+                                    "color:#4169E1;")
 
     def SetPreheatMode(self):
         self.ModeStackedWindow.setCurrentIndex(1)
-        self.preheat_btn.setStyleSheet("background:#81dbcd;\n"
+        self.preheat_btn.setStyleSheet("background:#4169E1;\n"
                                        "color:#ffffff\n")
         self.manual_btn.setStyleSheet("border-radius:25px;\n"
                                       "background:#ffffff;\n"
-                                      "border:1px solid #81dbcd;\n"
-                                      "color:#81dbcd;")
+                                      "border:1px solid #4169E1;\n"
+                                      "color:#4169E1;")
         self.auto_btn.setStyleSheet("border-radius:25px;\n"
                                     "background:#ffffff;\n"
-                                    "border:1px solid #81dbcd;\n"
-                                    "color:#81dbcd;")
+                                    "border:1px solid #4169E1;\n"
+                                    "color:#4169E1;")
 
     def showAlarm(self, alarm_title):
         self.Alarm_widget.show()
@@ -1274,8 +1111,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
 
-        self.date_text.setText(_translate("MainWindow", " 05 / 11 / 2023"))
-        self.time_text.setText(_translate("MainWindow", "  10 : 38 AM | WED"))
+       
         self.label_9.setText(_translate("MainWindow", "Baby Temperature"))
         self.label_11.setText(_translate("MainWindow", "32°C"))
         self.pushButton.setText(_translate("MainWindow", "Set Temperature"))
@@ -1304,11 +1140,7 @@ class Ui_MainWindow(object):
         self.auto_btn.setText(_translate("MainWindow", "Auto Mode"))
         self.manual_btn.setText(_translate("MainWindow", "Manual Mode"))
         self.preheat_btn.setText(_translate("MainWindow", "Preheat Mode"))
-        self.label_4.setText(_translate("MainWindow", "Alarm"))
-        self.label_6.setText(_translate("MainWindow", "Data logs"))
-        self.label_7.setText(_translate("MainWindow", "Graph"))
-        self.label_8.setText(_translate("MainWindow", "Apgar Timer"))
-        self.label_40.setText(_translate("MainWindow", "CPR Timer"))
+       
         self.human_data_btn.setText(_translate("MainWindow", "Human Data"))
         self.alarm_log_btn.setText(_translate("MainWindow", "Alarms log"))
         self.label_14.setText(_translate("MainWindow", "Temperature Hot"))
