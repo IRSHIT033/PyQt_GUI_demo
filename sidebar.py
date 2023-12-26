@@ -12,9 +12,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_SideBar(object):
-    def setupUi(self, SideBar):
+    def setupUi(self, SideBar, main_screen):
         SideBar.setObjectName("SideBar")
         SideBar.setStyleSheet("background:#4169E1")
+        self.main_screen=main_screen
         self.verticalLayout = QtWidgets.QVBoxLayout(SideBar)
         self.verticalLayout.setSpacing(40)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -34,7 +35,7 @@ class Ui_SideBar(object):
         self.home_icon.setMinimumSize(QtCore.QSize(40, 40))
         self.home_icon.setMaximumSize(QtCore.QSize(40, 40))
         self.home_icon.setText("")
-        self.home_icon.setPixmap(QtGui.QPixmap(".\\UI\\../../../Downloads/house_dark.png"))
+        self.home_icon.setPixmap(QtGui.QPixmap("./Assets/house_dark.png"))
         self.home_icon.setScaledContents(True)
         self.home_icon.setObjectName("home_icon")
         self.horizontalLayout.addWidget(self.home_icon)
@@ -58,7 +59,7 @@ class Ui_SideBar(object):
         self.settings_icon.setMinimumSize(QtCore.QSize(35, 35))
         self.settings_icon.setMaximumSize(QtCore.QSize(40, 40))
         self.settings_icon.setText("")
-        self.settings_icon.setPixmap(QtGui.QPixmap(".\\UI\\../../../Downloads/gear_light.png"))
+        self.settings_icon.setPixmap(QtGui.QPixmap("./Assets/gear_light.png"))
         self.settings_icon.setScaledContents(True)
         self.settings_icon.setObjectName("settings_icon")
         self.horizontalLayout_2.addWidget(self.settings_icon)
@@ -83,7 +84,7 @@ class Ui_SideBar(object):
         self.graph_icon.setMinimumSize(QtCore.QSize(35, 35))
         self.graph_icon.setMaximumSize(QtCore.QSize(40, 40))
         self.graph_icon.setText("")
-        self.graph_icon.setPixmap(QtGui.QPixmap(".\\UI\\../../../Downloads/chart-line-up_light.png"))
+        self.graph_icon.setPixmap(QtGui.QPixmap("./Assets/chart-line-up_light.png"))
         self.graph_icon.setScaledContents(True)
         self.graph_icon.setObjectName("graph_icon")
         self.horizontalLayout_3.addWidget(self.graph_icon)
@@ -108,7 +109,7 @@ class Ui_SideBar(object):
         self.logs_icon.setMinimumSize(QtCore.QSize(35, 35))
         self.logs_icon.setMaximumSize(QtCore.QSize(40, 40))
         self.logs_icon.setText("")
-        self.logs_icon.setPixmap(QtGui.QPixmap(".\\UI\\../../../Downloads/notebook_light.png"))
+        self.logs_icon.setPixmap(QtGui.QPixmap("./Assets/notebook_light.png"))
         self.logs_icon.setScaledContents(True)
         self.logs_icon.setObjectName("logs_icon")
         self.horizontalLayout_4.addWidget(self.logs_icon)
@@ -129,6 +130,7 @@ class Ui_SideBar(object):
         self.verticalLayout.addWidget(self.label_3)
 
         self.retranslateUi(SideBar)
+        
         QtCore.QMetaObject.connectSlotsByName(SideBar)
 
     def retranslateUi(self, SideBar):
@@ -138,6 +140,9 @@ class Ui_SideBar(object):
         self.label_2.setText(_translate("SideBar", "System "))
         self.label_4.setText(_translate("SideBar", "Graph"))
         self.label_5.setText(_translate("SideBar", "logs"))
+
+   
+
 
 
 if __name__ == "__main__":
