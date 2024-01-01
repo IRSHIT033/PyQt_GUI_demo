@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtCore import QRect
 
 class Ui_SideBar(object):
     def setupUi(self, SideBar, main_screen):
@@ -18,6 +18,7 @@ class Ui_SideBar(object):
         self.main_screen=main_screen
         self.verticalLayout = QtWidgets.QVBoxLayout(SideBar)
         self.verticalLayout.setSpacing(40)
+        self.verticalLayout.setContentsMargins(-1,40,-1,-1)
         self.verticalLayout.setObjectName("verticalLayout")
         self.widget = QtWidgets.QWidget(SideBar)
         self.widget.setMinimumSize(QtCore.QSize(0, 0))

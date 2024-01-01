@@ -1,5 +1,6 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets    
 from alarm_logs_Ui import Ui_alarm_logs
+from header_Ui import Ui_Header
 from person_data import Ui_person_history
 from sidebar import Ui_SideBar
 import websocket_handler
@@ -18,6 +19,7 @@ class Ui_MainWindow(object):
                                  "\n"
                                  "#Header{\n"
                                  "   background-color:#ffffff;\n"
+                                
                                  "}\n"
                                  "\n"
                                  "#baby_temp_div, #set_temp_div, #Power_preheat, #baby_tmp_preheat\n"
@@ -47,75 +49,19 @@ class Ui_MainWindow(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
-        # self.Header = QtWidgets.QWidget(self.centralwidget)
-        # self.Header.setMinimumSize(QtCore.QSize(0, 120))
-        # self.Header.setMaximumSize(QtCore.QSize(16777215, 120))
-        # font = QtGui.QFont()
-        # font.setPointSize(30)
-        # self.Header.setFont(font)
-        # self.Header.setObjectName("Header")
-        # self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.Header)
-        # self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        # self.horizontalLayout_2.setSpacing(0)
-        # self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        # self.date_widget = QtWidgets.QWidget(self.Header)
-        # self.date_widget.setObjectName("date_widget")
-        # self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.date_widget)
-        # self.horizontalLayout_3.setContentsMargins(20, -1, -1, -1)
-        # self.horizontalLayout_3.setSpacing(12)
-        # self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        # self.date_icon = QtWidgets.QLabel(self.date_widget)
-        # self.date_icon.setMaximumSize(QtCore.QSize(30, 30))
-        # self.date_icon.setBaseSize(QtCore.QSize(20, 20))
-        # font = QtGui.QFont()
-        # font.setPointSize(8)
-        # font.setKerning(True)
-        # self.date_icon.setFont(font)
-        # self.date_icon.setText("")
-        # self.date_icon.setPixmap(QtGui.QPixmap(
-        #     "./Assets/date_range.png"))
-        # self.date_icon.setScaledContents(True)
-        # self.date_icon.setObjectName("date_icon")
-        # self.horizontalLayout_3.addWidget(
-        #     self.date_icon, 0, QtCore.Qt.AlignVCenter)
-        # self.date_text = QtWidgets.QLabel(self.date_widget)
-        # self.date_text.setMaximumSize(QtCore.QSize(150, 16777215))
-        # font = QtGui.QFont()
-        # font.setPointSize(11)
-        # font.setBold(False)
-        # font.setWeight(50)
-        # self.date_text.setFont(font)
-        # self.date_text.setScaledContents(False)
-        # self.date_text.setWordWrap(True)
-        # self.date_text.setObjectName("date_text")
-        # self.horizontalLayout_3.addWidget(self.date_text)
-        # self.time_icon = QtWidgets.QLabel(self.date_widget)
-        # self.time_icon.setMaximumSize(QtCore.QSize(30, 30))
-        # self.time_icon.setText("")
-        # self.time_icon.setPixmap(QtGui.QPixmap(
-        #     "./Assets/access_time.png"))
-        # self.time_icon.setScaledContents(True)
-        # self.time_icon.setObjectName("time_icon")
-        # self.horizontalLayout_3.addWidget(
-        #     self.time_icon, 0, QtCore.Qt.AlignVCenter)
-        # self.time_text = QtWidgets.QLabel(self.date_widget)
-        # font = QtGui.QFont()
-        # font.setPointSize(11)
-        # font.setBold(False)
-        # font.setWeight(50)
-        # self.time_text.setFont(font)
-        # self.time_text.setObjectName("time_text")
-        # self.horizontalLayout_3.addWidget(self.time_text)
+        
+        self.header_container=QtWidgets.QWidget(self.centralwidget)
+        self.Header = QtWidgets.QWidget(self.header_container)
+ 
+        self.Header_UI=Ui_Header()
+        self.Header_UI.setupUi(self.Header)
+        self.Header.show()
+        
+        
+       
 
-        # # setup UI for timer
-        # self.timerUI = timer_ui.Timer_UI()
-        # self.timerUI.setupUi(self.date_widget)
+        self.verticalLayout.addWidget(self.Header)
 
-        # self.horizontalLayout_3.addWidget(
-        #     self.timerUI.widget_11, 0, QtCore.Qt.AlignHCenter)
-
-        # self.horizontalLayout_2.addWidget(self.date_widget)
-        #self.verticalLayout.addWidget(self.Header)
         self.Main_screen_container = QtWidgets.QWidget(self.centralwidget)
         self.Main_screen_container.setObjectName("Main_screen_container")
         self.horizontalLayout = QtWidgets.QHBoxLayout(
