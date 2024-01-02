@@ -14,7 +14,7 @@
 # End of https://www.gitignore.io/api/visualstudiocode
 *.ui
 env
-__pycache__
+*__pycache__
 .DS_Store
 *.log
 *.swp

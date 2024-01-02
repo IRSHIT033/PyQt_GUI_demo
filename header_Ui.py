@@ -255,10 +255,17 @@ class Ui_Header(object):
         shadow_effect.setColor(QColor("#000000"))  # Set the shadow color
         shadow_effect.setOffset(0, 0)  # Set the shadow offset
         self.header_container.setGraphicsEffect(shadow_effect)
+        self.widget_9.setStyleSheet("border:none;\n"
+                                    "color:#4167e1;")
+        self.Apgar_Timer_btn_2.clicked.connect(self.show_apgar_timer)
 
         self.retranslateUi(Header)
         self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Header)
+
+    def show_apgar_timer(self):
+        """Show Apgar timer."""
+        self.stackedWidget.setCurrentIndex(1)
 
     def retranslateUi(self, Header):
         _translate = QtCore.QCoreApplication.translate

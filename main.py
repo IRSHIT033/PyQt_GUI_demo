@@ -2,10 +2,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from alarm_logs_Ui import Ui_alarm_logs
 from header_Ui import Ui_Header
 from person_data import Ui_person_history
+from settings_Ui import Ui_settings_screen
 from sidebar import Ui_SideBar
 import websocket_handler
 import set_temp
 from modes_Ui import Ui_mode_screen
+from domain.domain_settings import metricDetailsType, settingsDetailsType
 import alarm
 import timer_ui
 
@@ -39,6 +41,8 @@ class Ui_MainWindow(object):
                                  "\n"
                                  "\n"
                                  "")
+        
+        self.system_settings : settingsDetailsType = settingsDetailsType(metric=metricDetailsType(light_level_shown=True,noice_level_shown=True))
 
         # handling websockets
         self.websocketHandler = websocket_handler.WebSocketHandler()
@@ -85,12 +89,14 @@ class Ui_MainWindow(object):
             self.stacked_pages_container)
         
         self.main_screen.setObjectName("main_screen")
-
+        
+        # -------------------------Home screeen----------------------#
         self.modes_widget=QtWidgets.QWidget()
         self.modes_ui=Ui_mode_screen()
         self.modes_ui.setupUi(self.modes_widget)
         self.modes_widget.show()
         self.main_screen.addWidget(self.modes_widget)
+        # -----------------------------------------------------------#
         
 
         # -------------------------logs screeen----------------------#
@@ -117,6 +123,18 @@ class Ui_MainWindow(object):
         self.log_screens_stacked.setCurrentIndex(1)
 
         # -----------------------------------------------------------#
+
+
+
+        # -------------------------Settings screeen------------------#
+        self.settings_screen=QtWidgets.QWidget()
+        self.settings_ui=Ui_settings_screen()
+        self.settings_ui.setupUi(self.settings_screen,self.system_settings)
+        self.settings_screen.show()
+        self.main_screen.addWidget(self.settings_screen)
+
+        # -----------------------------------------------------------#
+
         
         self.graph_page = QtWidgets.QWidget()
         self.graph_page.setObjectName("graph_page")
@@ -132,6 +150,7 @@ class Ui_MainWindow(object):
         # sidebar navigation
         self.sidebar_ui.widget.mouseReleaseEvent=self.showHomeScreen
         self.sidebar_ui.widget_4.mouseReleaseEvent=self.showLogsScreen
+        self.sidebar_ui.widget_2.mouseReleaseEvent=self.showSettingsScreen
         #
         
         self.horizontalLayout.addWidget(self.right_sidebar)
@@ -248,6 +267,97 @@ class Ui_MainWindow(object):
         self.sidebar_ui.label_2.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_4.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_5.setStyleSheet("color:#ffffff")
+        
+        if self.system_settings.metric.noice_level_shown == False:
+           self.modes_ui.label_3.hide()
+           self.modes_ui.widget_4.hide()
+
+           self.modes_ui.label_12.hide()
+           self.modes_ui.widget_16.hide()
+
+           self.modes_ui.label_6.hide()
+           self.modes_ui.widget_12.hide()
+             
+
+        if self.system_settings.metric.noice_level_shown == True:
+           self.modes_ui.label_3.show()
+           self.modes_ui.widget_4.show() 
+
+           self.modes_ui.label_12.show()
+           self.modes_ui.widget_16.show()
+
+           self.modes_ui.label_6.show()
+           self.modes_ui.widget_12.show()  
+
+        if self.system_settings.metric.light_level_shown == False:
+           self.modes_ui.label_4.hide()
+           self.modes_ui.widget_5.hide() 
+
+           self.modes_ui.label_7.hide()
+           self.modes_ui.widget_13.hide()
+
+           self.modes_ui.label_11.hide()
+           self.modes_ui.widget_15.hide()
+
+
+        if self.system_settings.metric.light_level_shown == True:
+           self.modes_ui.label_4.show()
+           self.modes_ui.widget_5.show() 
+
+           self.modes_ui.label_7.show()
+           self.modes_ui.widget_13.show() 
+           
+           self.modes_ui.label_11.show()
+           self.modes_ui.widget_15.show()
+
+
+
+        if self.system_settings.metric.light_level_shown == False and self.system_settings.metric.light_level_shown == False :
+           
+           # power label change position manual mode
+           self.modes_ui.gridLayout.removeWidget(self.modes_ui.label_5)
+           self.modes_ui.gridLayout.removeWidget(self.modes_ui.widget_6)
+
+           self.modes_ui.gridLayout.addWidget(self.modes_ui.label_5,0,1)
+           self.modes_ui.gridLayout.addWidget(self.modes_ui.widget_6,1,1)
+           self.modes_ui.widget_6.setMinimumHeight(200)
+           self.modes_ui.gridLayout_2.setRowStretch(1,3)
+
+           # power label position change auto mode
+           self.modes_ui.gridLayout_2.removeWidget(self.modes_ui.label_10)
+           self.modes_ui.gridLayout_2.removeWidget(self.modes_ui.widget_14)
+
+           self.modes_ui.gridLayout_2.addWidget(self.modes_ui.label_10,0,1)
+           self.modes_ui.gridLayout_2.addWidget(self.modes_ui.widget_14,1,1)
+           self.modes_ui.widget_14.setMinimumHeight(200)
+           self.modes_ui.gridLayout_2.setRowStretch(1,3)
+          
+
+
+        if self.system_settings.metric.light_level_shown == True and self.system_settings.metric.light_level_shown == True :
+           
+           # power label change position manual mode
+           self.modes_ui.gridLayout.removeWidget(self.modes_ui.label_5)
+           self.modes_ui.gridLayout.removeWidget(self.modes_ui.widget_6)
+
+           self.modes_ui.gridLayout.addWidget(self.modes_ui.label_5,4,1)
+           self.modes_ui.gridLayout.addWidget(self.modes_ui.widget_6,5,1)
+
+           # power label position change auto mode
+           self.modes_ui.gridLayout_2.removeWidget(self.modes_ui.label_10)
+           self.modes_ui.gridLayout_2.removeWidget(self.modes_ui.widget_14)
+
+           self.modes_ui.gridLayout_2.addWidget(self.modes_ui.label_10,4,1)
+           self.modes_ui.gridLayout_2.addWidget(self.modes_ui.widget_14,5,1)    
+
+
+           
+        # elif self.system_settings.metric.noice_level_shown == False:
+        # elif self.system_settings.metric.light_level_shown == False:    
+             
+           
+    
+   
 
     def showLogsScreen(self,event):
         self.main_screen.setCurrentIndex(1)
@@ -275,6 +385,33 @@ class Ui_MainWindow(object):
         self.sidebar_ui.label_2.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_4.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_5.setStyleSheet("color:#4169e1")
+
+    def showSettingsScreen(self, event):
+        self.main_screen.setCurrentIndex(2)
+        self.sidebar_ui.widget.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+         "background:#4169E1;\n"
+        "color:#ffffff")
+        self.sidebar_ui.widget_2.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+         "background:#ffffff;\n"
+        "color:#4169e1")
+        self.sidebar_ui.widget_3.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+         "background:#4169E1;\n"
+        "color:#ffffff")
+        self.sidebar_ui.widget_4.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+         "background:#4169E1;\n"
+        "color:#ffffff")
+        self.sidebar_ui.logs_icon.setPixmap(QtGui.QPixmap("./Assets/notebook_light.png"))
+        self.sidebar_ui.home_icon.setPixmap(QtGui.QPixmap("./Assets/house_light.png"))
+        self.sidebar_ui.settings_icon.setPixmap(QtGui.QPixmap("./Assets/gear_dark.png"))
+        self.sidebar_ui.graph_icon.setPixmap(QtGui.QPixmap("./Assets/chart-line-up_light.png"))
+        self.sidebar_ui.label.setStyleSheet("color:#ffffff")
+        self.sidebar_ui.label_2.setStyleSheet("color:#4167e1")
+        self.sidebar_ui.label_4.setStyleSheet("color:#ffffff")
+        self.sidebar_ui.label_5.setStyleSheet("color:#ffffff")    
     
 
     def getback_to_person_history_screen(self):
@@ -285,9 +422,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
 
       
-       
-       
-
 
 if __name__ == "__main__":
     import sys
