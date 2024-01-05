@@ -82,7 +82,7 @@ class Ui_MainWindow(object):
         self.stacked_pages_container.setObjectName("stacked_pages_container")
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout(
             self.stacked_pages_container)
-        self.horizontalLayout_8.setContentsMargins(70, 70, 70, 70)
+        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_8.setSpacing(0)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
         self.main_screen = QtWidgets.QStackedWidget(
@@ -268,90 +268,7 @@ class Ui_MainWindow(object):
         self.sidebar_ui.label_4.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_5.setStyleSheet("color:#ffffff")
         
-        if self.system_settings.metric.noice_level_shown == False:
-           self.modes_ui.label_3.hide()
-           self.modes_ui.widget_4.hide()
-
-           self.modes_ui.label_12.hide()
-           self.modes_ui.widget_16.hide()
-
-           self.modes_ui.label_6.hide()
-           self.modes_ui.widget_12.hide()
-             
-
-        if self.system_settings.metric.noice_level_shown == True:
-           self.modes_ui.label_3.show()
-           self.modes_ui.widget_4.show() 
-
-           self.modes_ui.label_12.show()
-           self.modes_ui.widget_16.show()
-
-           self.modes_ui.label_6.show()
-           self.modes_ui.widget_12.show()  
-
-        if self.system_settings.metric.light_level_shown == False:
-           self.modes_ui.label_4.hide()
-           self.modes_ui.widget_5.hide() 
-
-           self.modes_ui.label_7.hide()
-           self.modes_ui.widget_13.hide()
-
-           self.modes_ui.label_11.hide()
-           self.modes_ui.widget_15.hide()
-
-
-        if self.system_settings.metric.light_level_shown == True:
-           self.modes_ui.label_4.show()
-           self.modes_ui.widget_5.show() 
-
-           self.modes_ui.label_7.show()
-           self.modes_ui.widget_13.show() 
-           
-           self.modes_ui.label_11.show()
-           self.modes_ui.widget_15.show()
-
-
-
-        if self.system_settings.metric.light_level_shown == False and self.system_settings.metric.light_level_shown == False :
-           
-           # power label change position manual mode
-           self.modes_ui.gridLayout.removeWidget(self.modes_ui.label_5)
-           self.modes_ui.gridLayout.removeWidget(self.modes_ui.widget_6)
-
-           self.modes_ui.gridLayout.addWidget(self.modes_ui.label_5,0,1)
-           self.modes_ui.gridLayout.addWidget(self.modes_ui.widget_6,1,1)
-           self.modes_ui.widget_6.setMinimumHeight(200)
-           self.modes_ui.gridLayout_2.setRowStretch(1,3)
-
-           # power label position change auto mode
-           self.modes_ui.gridLayout_2.removeWidget(self.modes_ui.label_10)
-           self.modes_ui.gridLayout_2.removeWidget(self.modes_ui.widget_14)
-
-           self.modes_ui.gridLayout_2.addWidget(self.modes_ui.label_10,0,1)
-           self.modes_ui.gridLayout_2.addWidget(self.modes_ui.widget_14,1,1)
-           self.modes_ui.widget_14.setMinimumHeight(200)
-           self.modes_ui.gridLayout_2.setRowStretch(1,3)
-          
-
-
-        if self.system_settings.metric.light_level_shown == True and self.system_settings.metric.light_level_shown == True :
-           
-           # power label change position manual mode
-           self.modes_ui.gridLayout.removeWidget(self.modes_ui.label_5)
-           self.modes_ui.gridLayout.removeWidget(self.modes_ui.widget_6)
-
-           self.modes_ui.gridLayout.addWidget(self.modes_ui.label_5,4,1)
-           self.modes_ui.gridLayout.addWidget(self.modes_ui.widget_6,5,1)
-
-           # power label position change auto mode
-           self.modes_ui.gridLayout_2.removeWidget(self.modes_ui.label_10)
-           self.modes_ui.gridLayout_2.removeWidget(self.modes_ui.widget_14)
-
-           self.modes_ui.gridLayout_2.addWidget(self.modes_ui.label_10,4,1)
-           self.modes_ui.gridLayout_2.addWidget(self.modes_ui.widget_14,5,1)    
-
-
-           
+       
         # elif self.system_settings.metric.noice_level_shown == False:
         # elif self.system_settings.metric.light_level_shown == False:    
              
