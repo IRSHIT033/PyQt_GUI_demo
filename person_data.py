@@ -36,7 +36,7 @@ class Ui_person_history(object):
         font.setPointSize(9)
         self.pushButton_2.setFont(font)
         self.pushButton_2.setStyleSheet("border:1px solid #4169e1;\n"
-"border-radius:10px;\n"
+"border-radius:5px;\n"
 "color: #4169e1;")
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout.addWidget(self.pushButton_2)
@@ -47,7 +47,7 @@ class Ui_person_history(object):
         font.setPointSize(9)
         self.pushButton.setFont(font)
         self.pushButton.setStyleSheet("border:1px solid #4169e1;\n"
-"border-radius:10px;\n"
+"border-radius:5px;\n"
 "color: #4169e1")
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout.addWidget(self.pushButton)
@@ -73,10 +73,18 @@ class Ui_person_history(object):
         self.widget_3.setFont(font)
         self.widget_3.setStyleSheet("border:1px solid #4169e1;\n"
 "color:#4169e1;\n"
-"border-radius:10px;")
+"border-radius:5px;")
         self.widget_3.setObjectName("widget_3")
         self.gridLayout = QtWidgets.QGridLayout(self.widget_3)
         self.gridLayout.setObjectName("gridLayout")
+        
+        self.verticalLayout_2.addWidget(self.widget_3)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem1)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.horizontalLayout_2.addWidget(self.scrollArea)
+        self.verticalLayout.addWidget(self.widget_2)
+
         self.label_3 = QtWidgets.QLabel(self.widget_3)
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -140,12 +148,6 @@ class Ui_person_history(object):
         self.label.setStyleSheet("border:none;")
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
-        self.verticalLayout_2.addWidget(self.widget_3)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_2.addItem(spacerItem1)
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        self.horizontalLayout_2.addWidget(self.scrollArea)
-        self.verticalLayout.addWidget(self.widget_2)
 
         
 
@@ -161,9 +163,10 @@ class Ui_person_history(object):
         self.label_4.setText(_translate("person_history", "Gender: Male"))
         self.label_2.setText(_translate("person_history", "Name: Irshit Mukhejee "))
         self.label_6.setText(_translate("person_history", "Date: 12/02/23"))
-        self.getalarm_logs_btn.setText(_translate("person_history", "Get Alarm Logs"))
+        self.getalarm_logs_btn.setText(_translate("person_history", "Set Current Patient"))
         self.label_5.setText(_translate("person_history", "Time: 12:20pm"))
         self.label.setText(_translate("person_history", "Patient Id: 1"))
+
 
 
 

@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets    
 from alarm_logs_Ui import Ui_alarm_logs
+from domain.domain_patient import PatientDetail, alarm_log
 from header_Ui import Ui_Header
 from person_data import Ui_person_history
 from settings_Ui import Ui_settings_screen
@@ -41,7 +42,20 @@ class Ui_MainWindow(object):
                                  "\n"
                                  "\n"
                                  "")
+        # Mock Ups-------------------------------------------- #
+
+        # self.patient1:PatientDetail=PatientDetail(1,"Irshit Mukherjee",80,"12:03","12/02/22",[alarm_log(log_message="Temperature Hot",time="12 : 03 am",date="12 / 02 / 22"),
+        #                                                                             alarm_log(log_message="Temperature Low",time="12 : 31 am",date="12 / 02 / 22")
+        #                                                                             ])
         
+        # self.patient2:PatientDetail=PatientDetail(1,"Aritra Roy",67,"12:03","12/02/22",[alarm_log(log_message="Temperature Hot",time="10 : 03 pm",date="12 / 02 / 22")])
+        
+        # self.person_data: list[PatientDetail]
+        # self.person_data.append(self.patient1)
+        # self.person_data.append(self.patient2)
+        
+        # ------------------------------------------------------ #
+
         self.system_settings : settingsDetailsType = settingsDetailsType(metric=metricDetailsType(light_level_shown=True,noice_level_shown=True))
 
         # handling websockets
@@ -61,9 +75,6 @@ class Ui_MainWindow(object):
         self.Header_UI=Ui_Header()
         self.Header_UI.setupUi(self.Header)
         self.Header.show()
-        
-        
-       
 
         self.verticalLayout.addWidget(self.Header)
 
@@ -97,30 +108,14 @@ class Ui_MainWindow(object):
         self.modes_widget.show()
         self.main_screen.addWidget(self.modes_widget)
         # -----------------------------------------------------------#
-        
-
-        # -------------------------logs screeen----------------------#
-        
-        
-        self.log_screens_stacked=QtWidgets.QStackedWidget()
-
-        #------------person_data_logs---------#
-        self.personlogs_screen = QtWidgets.QWidget()
-        self.personlogs_ui =  Ui_person_history()
-        self.personlogs_ui.setupUi(self.personlogs_screen)
-        self.personlogs_screen.show()
-        self.log_screens_stacked.addWidget(self.personlogs_screen)
+       
 
         #------------alarm_data_logs---------#
         self.alarmlogs_screen = QtWidgets.QWidget()
         self.alarmlogs_ui =  Ui_alarm_logs()
         self.alarmlogs_ui.setupUi(self.alarmlogs_screen)
         self.alarmlogs_screen.show()
-        self.alarmlogs_ui.pushButton.clicked.connect(self.getback_to_person_history_screen)
-        self.log_screens_stacked.addWidget(self.alarmlogs_screen)
-        
-        self.main_screen.addWidget(self.log_screens_stacked)
-        self.log_screens_stacked.setCurrentIndex(1)
+        self.main_screen.addWidget(self.alarmlogs_screen)
 
         # -----------------------------------------------------------#
 
@@ -141,6 +136,16 @@ class Ui_MainWindow(object):
         self.main_screen.addWidget(self.graph_page)
         self.horizontalLayout_8.addWidget(self.main_screen)
         self.horizontalLayout.addWidget(self.stacked_pages_container)
+
+         #------------person_data_logs---------#
+        self.personlogs_screen = QtWidgets.QWidget()
+        self.personlogs_ui =  Ui_person_history()
+        self.personlogs_ui.setupUi(self.personlogs_screen)
+        self.personlogs_screen.show()
+        self.main_screen.addWidget(self.personlogs_screen)
+
+
+
         self.right_sidebar = QtWidgets.QWidget(self.Main_screen_container)
         self.right_sidebar.resize(1000,1000)
         self.sidebar_ui = Ui_SideBar()
@@ -151,6 +156,7 @@ class Ui_MainWindow(object):
         self.sidebar_ui.widget.mouseReleaseEvent=self.showHomeScreen
         self.sidebar_ui.widget_4.mouseReleaseEvent=self.showLogsScreen
         self.sidebar_ui.widget_2.mouseReleaseEvent=self.showSettingsScreen
+        self.sidebar_ui.widget_5.mouseReleaseEvent=self.showDataScreen
         #
         
         self.horizontalLayout.addWidget(self.right_sidebar)
@@ -259,23 +265,82 @@ class Ui_MainWindow(object):
         "border:none;\n"
          "background:#4169E1;\n"
         "color:#ffffff")
+        self.sidebar_ui.widget_5.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+        "background:#4167e1;\n"
+        "color:#ffffff")
+
+
         self.sidebar_ui.logs_icon.setPixmap(QtGui.QPixmap("./Assets/notebook_light.png"))
         self.sidebar_ui.home_icon.setPixmap(QtGui.QPixmap("./Assets/house_dark.png"))
         self.sidebar_ui.settings_icon.setPixmap(QtGui.QPixmap("./Assets/gear_light.png"))
         self.sidebar_ui.graph_icon.setPixmap(QtGui.QPixmap("./Assets/chart-line-up_light.png"))
+        self.sidebar_ui.person_icon.setPixmap(QtGui.QPixmap("./Assets/user-square_light.png"))
+
+
         self.sidebar_ui.label.setStyleSheet("color:#4169e1")
         self.sidebar_ui.label_2.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_4.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_5.setStyleSheet("color:#ffffff")
-        
-       
-        # elif self.system_settings.metric.noice_level_shown == False:
-        # elif self.system_settings.metric.light_level_shown == False:    
-             
-           
-    
-   
+        self.sidebar_ui.label_6.setStyleSheet("color:#ffffff")
 
+        print(self.system_settings)   
+
+        if self.system_settings.metric.light_level_shown == False and self.system_settings.metric.noice_level_shown == False:
+           self.modes_ui.noice_leve_manual_widget.hide()
+           self.modes_ui.noice_level_auto_widget.hide()
+           self.modes_ui.widget_7.hide()
+
+           self.modes_ui.light_level_widget.hide()
+           self.modes_ui.light_level_auto_widget.hide()
+           self.modes_ui.widget_8.hide()
+
+           self.modes_ui.widget_16.hide()
+
+
+       
+
+        elif self.system_settings.metric.light_level_shown == False:
+           self.modes_ui.light_level_widget.hide()
+           self.modes_ui.light_level_auto_widget.hide()
+           self.modes_ui.widget_8.hide()
+
+        elif self.system_settings.metric.noice_level_shown == False:
+           self.modes_ui.noice_leve_manual_widget.hide()
+           self.modes_ui.noice_level_auto_widget.hide()
+           self.modes_ui.widget_7.hide()
+
+        
+        if self.system_settings.metric.light_level_shown == True and self.system_settings.metric.noice_level_shown == True: 
+           self.modes_ui.noice_leve_manual_widget.show()
+           self.modes_ui.noice_level_auto_widget.show()
+           self.modes_ui.widget_8.show()
+
+           self.modes_ui.light_level_widget.show()
+           self.modes_ui.light_level_auto_widget.show()
+           self.modes_ui.widget_7.show() 
+           
+           self.modes_ui.widget_16.show()
+
+        elif self.system_settings.metric.light_level_shown == True :
+           self.modes_ui.light_level_widget.show()
+           self.modes_ui.light_level_auto_widget.show()
+           self.modes_ui.widget_8.show()
+
+        elif self.system_settings.metric.noice_level_shown == True :
+           self.modes_ui.noice_leve_manual_widget.show()
+           self.modes_ui.noice_level_auto_widget.show()
+           self.modes_ui.widget_7.show()      
+
+
+
+      
+
+
+         
+       
+           
+             
     def showLogsScreen(self,event):
         self.main_screen.setCurrentIndex(1)
         self.sidebar_ui.widget.setStyleSheet("border-radius:5px;\n"
@@ -294,13 +359,19 @@ class Ui_MainWindow(object):
         "border:none;\n"
         "background:#ffffff;\n"
         "color:#4169E1")
+        self.sidebar_ui.widget_5.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+        "background:#4167e1;\n"
+        "color:#ffffff")
         self.sidebar_ui.logs_icon.setPixmap(QtGui.QPixmap("./Assets/notebook_dark.png"))
         self.sidebar_ui.home_icon.setPixmap(QtGui.QPixmap("./Assets/house_light.png"))
         self.sidebar_ui.settings_icon.setPixmap(QtGui.QPixmap("./Assets/gear_light.png"))
         self.sidebar_ui.graph_icon.setPixmap(QtGui.QPixmap("./Assets/chart-line-up_light.png"))
+        self.sidebar_ui.person_icon.setPixmap(QtGui.QPixmap("./Assets/user-square_light.png"))
         self.sidebar_ui.label.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_2.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_4.setStyleSheet("color:#ffffff")
+        self.sidebar_ui.label_6.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_5.setStyleSheet("color:#4169e1")
 
     def showSettingsScreen(self, event):
@@ -321,19 +392,57 @@ class Ui_MainWindow(object):
         "border:none;\n"
          "background:#4169E1;\n"
         "color:#ffffff")
+        self.sidebar_ui.widget_5.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+         "background:#4169E1;\n"
+        "color:#ffffff")
         self.sidebar_ui.logs_icon.setPixmap(QtGui.QPixmap("./Assets/notebook_light.png"))
         self.sidebar_ui.home_icon.setPixmap(QtGui.QPixmap("./Assets/house_light.png"))
         self.sidebar_ui.settings_icon.setPixmap(QtGui.QPixmap("./Assets/gear_dark.png"))
         self.sidebar_ui.graph_icon.setPixmap(QtGui.QPixmap("./Assets/chart-line-up_light.png"))
+        self.sidebar_ui.person_icon.setPixmap(QtGui.QPixmap("./Assets/user-square_light.png"))
         self.sidebar_ui.label.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_2.setStyleSheet("color:#4167e1")
         self.sidebar_ui.label_4.setStyleSheet("color:#ffffff")
-        self.sidebar_ui.label_5.setStyleSheet("color:#ffffff")    
+        self.sidebar_ui.label_5.setStyleSheet("color:#ffffff") 
+        self.sidebar_ui.label_6.setStyleSheet("color:#ffffff") 
+
+    def showDataScreen(self, event):
+        self.main_screen.setCurrentIndex(4)
+        self.sidebar_ui.widget.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+         "background:#4169E1;\n"
+        "color:#ffffff")
+        self.sidebar_ui.widget_2.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+         "background:#4169E1;\n"
+        "color:#ffffff")
+        self.sidebar_ui.widget_3.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+         "background:#4169E1;\n"
+        "color:#ffffff")
+        self.sidebar_ui.widget_4.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+         "background:#4169E1;\n"
+        "color:#ffffff")
+        self.sidebar_ui.widget_5.setStyleSheet(
+        "border-radius:5px;\n"
+        "border:none;\n"
+         "background:#ffffff;\n"
+        "color:#4169e1")
+
+        self.sidebar_ui.logs_icon.setPixmap(QtGui.QPixmap("./Assets/notebook_light.png"))
+        self.sidebar_ui.home_icon.setPixmap(QtGui.QPixmap("./Assets/house_light.png"))
+        self.sidebar_ui.settings_icon.setPixmap(QtGui.QPixmap("./Assets/gear_light.png"))
+        self.sidebar_ui.graph_icon.setPixmap(QtGui.QPixmap("./Assets/chart-line-up_light.png"))
+        self.sidebar_ui.person_icon.setPixmap(QtGui.QPixmap("./Assets/user-square_dark.png"))
+
+        self.sidebar_ui.label.setStyleSheet("color:#ffffff")
+        self.sidebar_ui.label_6.setStyleSheet("color:#4167e1")
+        self.sidebar_ui.label_4.setStyleSheet("color:#ffffff")
+        self.sidebar_ui.label_5.setStyleSheet("color:#ffffff")        
+        self.sidebar_ui.label_2.setStyleSheet("color:#ffffff")        
     
-
-    def getback_to_person_history_screen(self):
-        self.log_screens_stacked.setCurrentIndex(0)
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))

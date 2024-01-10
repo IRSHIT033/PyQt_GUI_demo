@@ -18,19 +18,6 @@ class Ui_alarm_logs(object):
         alarm_logs.setStyleSheet("background:#ffffff")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(alarm_logs)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.pushButton = QtWidgets.QPushButton(alarm_logs)
-        self.pushButton.setMinimumSize(QtCore.QSize(40, 40))
-        self.pushButton.setMaximumSize(QtCore.QSize(40, 40))
-        self.pushButton.setStyleSheet("background:#4169e1;\n"
-"border-radius:5px;\n"
-"")
-        self.pushButton.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\UI\\../../../Downloads/caret-left.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton.setIcon(icon)
-        self.pushButton.setIconSize(QtCore.QSize(50, 50))
-        self.pushButton.setObjectName("pushButton")
-        self.verticalLayout_2.addWidget(self.pushButton)
         self.scrollArea = QtWidgets.QScrollArea(alarm_logs)
         self.scrollArea.setStyleSheet("border:none\n"
 "")
@@ -49,7 +36,7 @@ class Ui_alarm_logs(object):
 "color:#4169e1")
         self.widget.setObjectName("widget")
         self.gridLayout = QtWidgets.QGridLayout(self.widget)
-        self.gridLayout.setContentsMargins(30, -1, -1, -1)
+        self.gridLayout.setContentsMargins(30, 30, 30, 30)
         self.gridLayout.setHorizontalSpacing(50)
         self.gridLayout.setObjectName("gridLayout")
         self.label = QtWidgets.QLabel(self.widget)

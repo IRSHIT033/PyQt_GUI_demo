@@ -124,11 +124,49 @@ class Ui_SideBar(object):
         self.label_5.setObjectName("label_5")
         self.horizontalLayout_4.addWidget(self.label_5)
         self.verticalLayout.addWidget(self.widget_4)
+        
+
+        self.widget_5 = QtWidgets.QWidget(SideBar)
+        self.widget_5.setMinimumSize(QtCore.QSize(0, 0))
+        self.widget_5.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.widget_5.setStyleSheet("border-radius:5px;\n"
+"border:none;\n"
+"background:#4167e1;\n"
+"color:#ffffff")
+        self.widget_5.setObjectName("widget")
+        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.widget_5)
+        self.horizontalLayout_5.setContentsMargins(30, -1, 30, -1)
+        self.horizontalLayout_5.setSpacing(20)
+        self.horizontalLayout_5.setObjectName("horizontalLayout")
+        self.person_icon = QtWidgets.QLabel(self.widget_5)
+        self.person_icon.setMinimumSize(QtCore.QSize(40, 40))
+        self.person_icon.setMaximumSize(QtCore.QSize(40, 40))
+        self.person_icon.setText("")
+        self.person_icon.setPixmap(QtGui.QPixmap("./Assets/user-square_light.png"))
+        self.person_icon.setScaledContents(True)
+        self.person_icon.setObjectName("home_icon")
+        self.horizontalLayout_5.addWidget(self.person_icon)
+        self.label_6 = QtWidgets.QLabel(self.widget_5)
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_6.setFont(font)
+        self.label_6.setObjectName("label_6")
+        self.label_6.setStyleSheet("color:#ffffff")
+        self.horizontalLayout_5.addWidget(self.label_6)
+        self.verticalLayout.addWidget(self.widget_5)
+
+
+
+
         self.label_3 = QtWidgets.QLabel(SideBar)
         self.label_3.setStyleSheet("")
         self.label_3.setText("")
         self.label_3.setObjectName("label_3")
         self.verticalLayout.addWidget(self.label_3)
+
+        
 
         self.retranslateUi(SideBar)
         
@@ -140,7 +178,8 @@ class Ui_SideBar(object):
         self.label.setText(_translate("SideBar", "Home"))
         self.label_2.setText(_translate("SideBar", "System "))
         self.label_4.setText(_translate("SideBar", "Graph"))
-        self.label_5.setText(_translate("SideBar", "logs"))
+        self.label_5.setText(_translate("SideBar", "Logs"))
+        self.label_6.setText(_translate("SideBar", "Data"))
 
    
 
