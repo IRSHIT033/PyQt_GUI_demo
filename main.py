@@ -269,36 +269,25 @@ class Ui_MainWindow(object):
         "border:none;\n"
         "background:#4167e1;\n"
         "color:#ffffff")
-
-
         self.sidebar_ui.logs_icon.setPixmap(QtGui.QPixmap("./Assets/notebook_light.png"))
         self.sidebar_ui.home_icon.setPixmap(QtGui.QPixmap("./Assets/house_dark.png"))
         self.sidebar_ui.settings_icon.setPixmap(QtGui.QPixmap("./Assets/gear_light.png"))
         self.sidebar_ui.graph_icon.setPixmap(QtGui.QPixmap("./Assets/chart-line-up_light.png"))
         self.sidebar_ui.person_icon.setPixmap(QtGui.QPixmap("./Assets/user-square_light.png"))
-
-
         self.sidebar_ui.label.setStyleSheet("color:#4169e1")
         self.sidebar_ui.label_2.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_4.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_5.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_6.setStyleSheet("color:#ffffff")
 
-        print(self.system_settings)   
-
         if self.system_settings.metric.light_level_shown == False and self.system_settings.metric.noice_level_shown == False:
            self.modes_ui.noice_leve_manual_widget.hide()
            self.modes_ui.noice_level_auto_widget.hide()
            self.modes_ui.widget_7.hide()
-
            self.modes_ui.light_level_widget.hide()
            self.modes_ui.light_level_auto_widget.hide()
            self.modes_ui.widget_8.hide()
-
            self.modes_ui.widget_16.hide()
-
-
-       
 
         elif self.system_settings.metric.light_level_shown == False:
            self.modes_ui.light_level_widget.hide()
@@ -310,7 +299,6 @@ class Ui_MainWindow(object):
            self.modes_ui.noice_level_auto_widget.hide()
            self.modes_ui.widget_7.hide()
 
-        
         if self.system_settings.metric.light_level_shown == True and self.system_settings.metric.noice_level_shown == True: 
            self.modes_ui.noice_leve_manual_widget.show()
            self.modes_ui.noice_level_auto_widget.show()
@@ -331,16 +319,7 @@ class Ui_MainWindow(object):
            self.modes_ui.noice_leve_manual_widget.show()
            self.modes_ui.noice_level_auto_widget.show()
            self.modes_ui.widget_7.show()      
-
-
-
-      
-
-
          
-       
-           
-             
     def showLogsScreen(self,event):
         self.main_screen.setCurrentIndex(1)
         self.sidebar_ui.widget.setStyleSheet("border-radius:5px;\n"
@@ -363,11 +342,13 @@ class Ui_MainWindow(object):
         "border:none;\n"
         "background:#4167e1;\n"
         "color:#ffffff")
+
         self.sidebar_ui.logs_icon.setPixmap(QtGui.QPixmap("./Assets/notebook_dark.png"))
         self.sidebar_ui.home_icon.setPixmap(QtGui.QPixmap("./Assets/house_light.png"))
         self.sidebar_ui.settings_icon.setPixmap(QtGui.QPixmap("./Assets/gear_light.png"))
         self.sidebar_ui.graph_icon.setPixmap(QtGui.QPixmap("./Assets/chart-line-up_light.png"))
         self.sidebar_ui.person_icon.setPixmap(QtGui.QPixmap("./Assets/user-square_light.png"))
+
         self.sidebar_ui.label.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_2.setStyleSheet("color:#ffffff")
         self.sidebar_ui.label_4.setStyleSheet("color:#ffffff")
@@ -425,8 +406,7 @@ class Ui_MainWindow(object):
         "border:none;\n"
          "background:#4169E1;\n"
         "color:#ffffff")
-        self.sidebar_ui.widget_5.setStyleSheet(
-        "border-radius:5px;\n"
+        self.sidebar_ui.widget_5.setStyleSheet("border-radius:5px;\n"
         "border:none;\n"
          "background:#ffffff;\n"
         "color:#4169e1")
