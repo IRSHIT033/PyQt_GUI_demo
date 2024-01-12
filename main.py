@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets    
 from alarm_logs_Ui import Ui_alarm_logs
 from domain.domain_patient import PatientDetail, alarm_log
+from graph_Ui import Graph_Screen_UI
 from header_Ui import Ui_Header
 from person_data import Ui_person_history
 from settings_Ui import Ui_settings_screen
@@ -130,12 +131,14 @@ class Ui_MainWindow(object):
         self.settings_screen.show()
         self.main_screen.addWidget(self.settings_screen)
 
-        # -----------------------------------------------------------#
-
-        
+        # -----------------------------------------------------------#        
         self.graph_page = QtWidgets.QWidget()
         self.graph_page.setObjectName("graph_page")
+        self.graph_ui = Graph_Screen_UI()
+        self.graph_ui.setupUi(self.graph_page)
+        self.graph_page.show()
         self.main_screen.addWidget(self.graph_page)
+
         self.horizontalLayout_8.addWidget(self.main_screen)
         self.horizontalLayout.addWidget(self.stacked_pages_container)
 
@@ -146,8 +149,6 @@ class Ui_MainWindow(object):
         self.personlogs_ui.setupUi(self.personlogs_screen, self.Patient_details)
         self.personlogs_screen.show()
         self.main_screen.addWidget(self.personlogs_screen)
-
-
 
         self.right_sidebar = QtWidgets.QWidget(self.Main_screen_container)
         self.right_sidebar.resize(1000,1000)
@@ -160,6 +161,7 @@ class Ui_MainWindow(object):
         self.sidebar_ui.widget_4.mouseReleaseEvent=self.showLogsScreen
         self.sidebar_ui.widget_2.mouseReleaseEvent=self.showSettingsScreen
         self.sidebar_ui.widget_5.mouseReleaseEvent=self.showDataScreen
+        self.sidebar_ui.widget_3.mouseReleaseEvent=self.showGraphScreen
         #
         
         self.horizontalLayout.addWidget(self.right_sidebar)
@@ -323,6 +325,43 @@ class Ui_MainWindow(object):
            self.modes_ui.noice_level_auto_widget.show()
            self.modes_ui.widget_7.show()      
          
+    def showGraphScreen(self,event):
+        self.main_screen.setCurrentIndex(3)
+
+        self.sidebar_ui.widget.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+         "background:#4169E1;\n"
+        "color:#ffffff")
+        self.sidebar_ui.widget_2.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+         "background:#4169E1;\n"
+        "color:#ffffff")
+        self.sidebar_ui.widget_3.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+        "background:#ffffff;\n"
+        "color:#4169E1")
+        self.sidebar_ui.widget_4.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+         "background:#4169E1;\n"
+        "color:#ffffff")
+        self.sidebar_ui.widget_5.setStyleSheet("border-radius:5px;\n"
+        "border:none;\n"
+        "background:#4167e1;\n"
+        "color:#ffffff")
+
+        self.sidebar_ui.logs_icon.setPixmap(QtGui.QPixmap("./Assets/notebook_light.png"))
+        self.sidebar_ui.home_icon.setPixmap(QtGui.QPixmap("./Assets/house_light.png"))
+        self.sidebar_ui.settings_icon.setPixmap(QtGui.QPixmap("./Assets/gear_light.png"))
+        self.sidebar_ui.graph_icon.setPixmap(QtGui.QPixmap("./Assets/chart-line-up_dark.png"))
+        self.sidebar_ui.person_icon.setPixmap(QtGui.QPixmap("./Assets/user-square_light.png"))
+
+        self.sidebar_ui.label.setStyleSheet("color:#ffffff")
+        self.sidebar_ui.label_2.setStyleSheet("color:#ffffff")
+        self.sidebar_ui.label_4.setStyleSheet("color:#4167e1")
+        self.sidebar_ui.label_6.setStyleSheet("color:#ffffff")
+        self.sidebar_ui.label_5.setStyleSheet("color:#ffffff")
+    
+    
     def showLogsScreen(self,event):
         self.main_screen.setCurrentIndex(1)
         self.sidebar_ui.widget.setStyleSheet("border-radius:5px;\n"
