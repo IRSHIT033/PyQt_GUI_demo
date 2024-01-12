@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
+from typing import Optional
 
 @dataclass
 class alarm_log:
@@ -19,7 +20,7 @@ class PatientDetail:
     gender: Gender
     time: str
     date: str
-    alarm_logs: list[alarm_log]
+    alarm_logs: list[alarm_log] | None
 
    
 

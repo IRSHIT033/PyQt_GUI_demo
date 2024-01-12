@@ -9,34 +9,41 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
 
-
+from patient_detail_card import Ui_patient_detail_card
 from domain.domain_patient import Gender, PatientDetail, alarm_log
 
 
 
 class Ui_Patient_edit_screen(object):
-    def __init__(self,patient_edit_screen):
+    def __init__(self,patient_edit_screen,patient_details:list[PatientDetail],verticalLayout_2:QtWidgets.QVBoxLayout,widget_container):
         super().__init__()
-        self.patient_list: list[PatientDetail] =[]
+        self.curr_idx=0
+        self.widget_container=widget_container
+        self.Layout_patient_detail=verticalLayout_2
+        self.patient_details: list[PatientDetail]=patient_details
         self.current_patient:PatientDetail=PatientDetail(1,"Irshit Mukherjee",80,Gender.MALE,"12:03","12/02/22",[alarm_log(log_message="Temperature Hot",time="12 : 03 am",date="12 / 02 / 22"),
-                                                                                    alarm_log(log_message="Temperature Low",time="12 : 31 am",date="12 / 02 / 22")
-                                                                                     ])
+                                                                                     alarm_log(log_message="Temperature Low",time="12 : 31 am",date="12 / 02 / 22")
+                                                                                      ])
         self.setupUi(patient_edit_screen)
 
 
     def setupUi(self, Patient_edit_screen):
-        Patient_edit_screen .setWindowFlag(QtCore.Qt.FramelessWindowHint)
-        Patient_edit_screen.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        # Patient_edit_screen .setWindowFlag(QtCore.Qt.FramelessWindowHint)
+        # Patient_edit_screen.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         Patient_edit_screen.setObjectName("Patient_edit_screen")
         Patient_edit_screen.resize(1003, 490)
         Patient_edit_screen.setStyleSheet("#centralwidget {\n"
 "border:none;\n"
-"border-radius:25px;\n"
-"}")
+"border-radius:5px;\n"
+
+"}") 
+        self.Patient_edit_screen=Patient_edit_screen
+        self.verticalLayout_MAIN = QtWidgets.QVBoxLayout(Patient_edit_screen)
         self.centralwidget = QtWidgets.QWidget(Patient_edit_screen)
         self.centralwidget.setStyleSheet("*{\n"
-"background:#ffffff;\n"
+"background:#d3d3d3;\n"
 "}\n"
 "")
         self.centralwidget.setObjectName("centralwidget")
@@ -513,26 +520,65 @@ class Ui_Patient_edit_screen(object):
         self.submit_btn.setObjectName("submit_btn")
         self.horizontalLayout_9.addWidget(self.submit_btn)
         self.verticalLayout.addWidget(self.widget_11)
-        Patient_edit_screen.setCentralWidget(self.centralwidget)
+
+        self.verticalLayout_MAIN.addWidget(self.centralwidget)
+         # Set the frameless window hint to hide the title bar
+        Patient_edit_screen.setWindowFlags(Patient_edit_screen.windowFlags() | Qt.FramelessWindowHint)
+        
+        # Enable translucent background
+        Patient_edit_screen.setAttribute(Qt.WA_TranslucentBackground)
+      
 
         self.retranslateUi(Patient_edit_screen)
         QtCore.QMetaObject.connectSlotsByName(Patient_edit_screen)
 
     def keyboard_key_press(self,sender:str):
+
+        cursor_pos=self.name_lineEdit.cursorPosition()
+        current_text=self.name_lineEdit.text()
+
         if sender == "space_key":
-           self.name_lineEdit.setText(self.name_lineEdit.text()+" ")
-        elif sender == "erase_key":
-            self.name_lineEdit.setText(self.name_lineEdit.text()[:-1])   
+           self.name_lineEdit.setText(current_text[:cursor_pos]+" "+current_text[cursor_pos:])
+        elif sender == "erase_key" and cursor_pos != 0:
+            self.name_lineEdit.setText(current_text[:cursor_pos-1]+current_text[cursor_pos:])   
         else:
-            self.name_lineEdit.setText(self.name_lineEdit.text()+sender[0])
+            self.name_lineEdit.setText(current_text[:cursor_pos]+sender[0].upper()+current_text[cursor_pos:])
+        
+        #set the cursor position to the next line
+        self.name_lineEdit.setCursorPosition(cursor_pos + 1)
 
     def addPatientData(self):
 
         self.current_patient.name=self.name_lineEdit.text()
         self.current_patient.gender=self.gneder_options.currentText()
-        self.patient_list.append(self.current_patient)
 
-        print(self.patient_list)
+        #remove the first item if length crossed 100
+        if len(self.patient_details) == 100:
+            self.patient_details=self.patient_details[1:]
+        
+        self.patient_details.append(self.current_patient)
+
+        self.Patient_edit_screen.close()
+
+        
+        persondata_widget=QtWidgets.QWidget(self.widget_container)
+        personeata_ui=Ui_patient_detail_card()
+        personeata_ui.setupUi(persondata_widget,self.current_patient)
+        persondata_widget.show()
+
+        #remove spacer
+        self.spacerItem=QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+
+        self.Layout_patient_detail.removeItem(self.spacerItem)
+
+        self.Layout_patient_detail.addWidget(persondata_widget)
+
+        
+        self.Layout_patient_detail.addItem(self.spacerItem)
+
+        self.curr_idx+=1
+
+        print(self.patient_details)
         
     
 
@@ -587,7 +633,7 @@ class Ui_Patient_edit_screen(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
+    MainWindow = QtWidgets.QDialog()
     ui = Ui_Patient_edit_screen(MainWindow)
     
     MainWindow.show()

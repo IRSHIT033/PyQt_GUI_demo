@@ -42,7 +42,9 @@ class Ui_MainWindow(object):
                                  "\n"
                                  "\n"
                                  "")
+         
         # Mock Ups-------------------------------------------- #
+        self.Patient_details: list[PatientDetail]=[]
 
         # self.patient1:PatientDetail=PatientDetail(1,"Irshit Mukherjee",80,"12:03","12/02/22",[alarm_log(log_message="Temperature Hot",time="12 : 03 am",date="12 / 02 / 22"),
         #                                                                             alarm_log(log_message="Temperature Low",time="12 : 31 am",date="12 / 02 / 22")
@@ -140,7 +142,8 @@ class Ui_MainWindow(object):
          #------------person_data_logs---------#
         self.personlogs_screen = QtWidgets.QWidget()
         self.personlogs_ui =  Ui_person_history()
-        self.personlogs_ui.setupUi(self.personlogs_screen)
+
+        self.personlogs_ui.setupUi(self.personlogs_screen, self.Patient_details)
         self.personlogs_screen.show()
         self.main_screen.addWidget(self.personlogs_screen)
 
