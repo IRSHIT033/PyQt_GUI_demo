@@ -18,10 +18,12 @@ from patient_detail_card import Ui_patient_detail_card
 
 
 class Ui_person_history(object):
-    def setupUi(self, person_history , patient_details):
+    def setupUi(self, person_history , patient_details, Current_patient, header):
         person_history.setObjectName("person_history")
         person_history.resize(840, 614)
         person_history.setStyleSheet("background:#ffffff")
+        self.current_patient=Current_patient
+        self.header=header
         self.patient_details=patient_details
         self.person_history=person_history
         self.verticalLayout = QtWidgets.QVBoxLayout(person_history)
@@ -85,7 +87,7 @@ class Ui_person_history(object):
 
     def addData(self):
         MainWindow = QtWidgets.QDialog(self.person_history)
-        ui = Ui_Patient_edit_screen(MainWindow,self.patient_details,self.verticalLayout_2,self.scrollAreaWidgetContents)
+        ui = Ui_Patient_edit_screen(MainWindow,self.patient_details,self.verticalLayout_2,self.scrollAreaWidgetContents,self.current_patient,self.header)
         MainWindow.show()
   
     def retranslateUi(self, person_history):

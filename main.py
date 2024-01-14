@@ -10,8 +10,7 @@ import websocket_handler
 import set_temp
 from modes_Ui import Ui_mode_screen
 from domain.domain_settings import metricDetailsType, settingsDetailsType
-import alarm
-import timer_ui
+
 
 
 class Ui_MainWindow(object):
@@ -46,6 +45,7 @@ class Ui_MainWindow(object):
          
         # Mock Ups-------------------------------------------- #
         self.Patient_details: list[PatientDetail]=[]
+        self.Current_Patient:PatientDetail=[]
 
         # self.patient1:PatientDetail=PatientDetail(1,"Irshit Mukherjee",80,"12:03","12/02/22",[alarm_log(log_message="Temperature Hot",time="12 : 03 am",date="12 / 02 / 22"),
         #                                                                             alarm_log(log_message="Temperature Low",time="12 : 31 am",date="12 / 02 / 22")
@@ -146,7 +146,7 @@ class Ui_MainWindow(object):
         self.personlogs_screen = QtWidgets.QWidget()
         self.personlogs_ui =  Ui_person_history()
 
-        self.personlogs_ui.setupUi(self.personlogs_screen, self.Patient_details)
+        self.personlogs_ui.setupUi(self.personlogs_screen, self.Patient_details,self.Current_Patient,self.Header_UI)
         self.personlogs_screen.show()
         self.main_screen.addWidget(self.personlogs_screen)
 

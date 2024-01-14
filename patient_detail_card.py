@@ -14,7 +14,7 @@ from domain.domain_patient import PatientDetail
 
 
 class Ui_patient_detail_card(object):
-    def setupUi(self, patient_detail_card, person_data:PatientDetail):
+    def setupUi(self, patient_detail_card, person_data:PatientDetail, current_patient:PatientDetail,header):
         self.person_data=person_data
         patient_detail_card.setObjectName("patient_detail_card")
         patient_detail_card.resize(874, 147)
@@ -70,15 +70,16 @@ class Ui_patient_detail_card(object):
         self.label_6.setStyleSheet("border:none;")
         self.label_6.setObjectName("label_6")
         self.gridLayout.addWidget(self.label_6, 3, 0, 1, 1)
-        self.getalarm_logs_btn = QtWidgets.QPushButton(self.widget_3)
-        self.getalarm_logs_btn.setMaximumSize(QtCore.QSize(16777215, 40))
+        self.set_current_btn = QtWidgets.QPushButton(self.widget_3)
+        self.set_current_btn.clicked.connect(lambda: self.setCurrentPatient(self.person_data,header))
+        self.set_current_btn.setMaximumSize(QtCore.QSize(16777215, 40))
         font = QtGui.QFont()
         font.setPointSize(11)
-        self.getalarm_logs_btn.setFont(font)
-        self.getalarm_logs_btn.setStyleSheet("color:#ffffff;\n"
+        self.set_current_btn.setFont(font)
+        self.set_current_btn.setStyleSheet("color:#ffffff;\n"
 "background:#4169e1")
-        self.getalarm_logs_btn.setObjectName("getalarm_logs_btn")
-        self.gridLayout.addWidget(self.getalarm_logs_btn, 3, 2, 1, 1)
+        self.set_current_btn.setObjectName("set_current_btn")
+        self.gridLayout.addWidget(self.set_current_btn, 3, 2, 1, 1)
         self.label_5 = QtWidgets.QLabel(self.widget_3)
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -102,6 +103,19 @@ class Ui_patient_detail_card(object):
         self.retranslateUi(patient_detail_card)
         QtCore.QMetaObject.connectSlotsByName(patient_detail_card)
 
+    def setCurrentPatient(self,current_patient:PatientDetail,header):
+        print(current_patient)
+        name="Name: "+ str(current_patient.name)
+        header.label_2.setText(name)
+        time="Time: "+str(current_patient.time)
+        date="Date: "+str(current_patient.date)
+        patient_id="Id: "+str(current_patient.patient_Id)
+        header.label_3.setText(time)
+        header.label_4.setText(date)
+        header.label.setText(patient_id)
+
+
+
     def retranslateUi(self, patient_detail_card):
         _translate = QtCore.QCoreApplication.translate
         patient_detail_card.setWindowTitle(_translate("patient_detail_card", "Form"))
@@ -109,7 +123,7 @@ class Ui_patient_detail_card(object):
         self.label_4.setText(_translate("patient_detail_card", "Gender:"+str(self.person_data.gender)))
         self.label_2.setText(_translate("patient_detail_card", "Name:"+self.person_data.name))
         self.label_6.setText(_translate("patient_detail_card", "Date:"+self.person_data.date))
-        self.getalarm_logs_btn.setText(_translate("patient_detail_card", "Get Alarm Logs"))
+        self.set_current_btn.setText(_translate("patient_detail_card", "Set Current Patient"))
         self.label_5.setText(_translate("patient_detail_card", "Time:"+self.person_data.time))
         self.label.setText(_translate("patient_detail_card", "Patient Id: 1"))
 

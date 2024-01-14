@@ -17,13 +17,15 @@ from domain.domain_patient import Gender, PatientDetail, alarm_log
 
 
 class Ui_Patient_edit_screen(object):
-    def __init__(self,patient_edit_screen,patient_details:list[PatientDetail],verticalLayout_2:QtWidgets.QVBoxLayout,widget_container):
+    def __init__(self,patient_edit_screen,patient_details:list[PatientDetail],verticalLayout_2:QtWidgets.QVBoxLayout,widget_container,current_patient:PatientDetail,header):
         super().__init__()
         self.curr_idx=0
+        self.header=header
+        self.current_patient=current_patient
         self.widget_container=widget_container
         self.Layout_patient_detail=verticalLayout_2
         self.patient_details: list[PatientDetail]=patient_details
-        self.current_patient:PatientDetail=PatientDetail(1,"Irshit Mukherjee",80,Gender.MALE,"12:03","12/02/22",[alarm_log(log_message="Temperature Hot",time="12 : 03 am",date="12 / 02 / 22"),
+        self.patient:PatientDetail=PatientDetail(1,"Irshit Mukherjee",80,Gender.MALE,"12:03","12/02/22",[alarm_log(log_message="Temperature Hot",time="12 : 03 am",date="12 / 02 / 22"),
                                                                                      alarm_log(log_message="Temperature Low",time="12 : 31 am",date="12 / 02 / 22")
                                                                                       ])
         self.setupUi(patient_edit_screen)
@@ -549,21 +551,21 @@ class Ui_Patient_edit_screen(object):
 
     def addPatientData(self):
 
-        self.current_patient.name=self.name_lineEdit.text()
-        self.current_patient.gender=self.gneder_options.currentText()
+        self.patient.name=self.name_lineEdit.text()
+        self.patient.gender=self.gneder_options.currentText()
 
         #remove the first item if length crossed 100
         if len(self.patient_details) == 100:
             self.patient_details=self.patient_details[1:]
         
-        self.patient_details.append(self.current_patient)
+        self.patient_details.append(self.patient)
 
         self.Patient_edit_screen.close()
 
         
         persondata_widget=QtWidgets.QWidget(self.widget_container)
         personeata_ui=Ui_patient_detail_card()
-        personeata_ui.setupUi(persondata_widget,self.current_patient)
+        personeata_ui.setupUi(persondata_widget,self.patient,self.current_patient,self.header)
         persondata_widget.show()
 
         #remove spacer
