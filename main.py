@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtGui, QtWidgets    
+from PyQt5 import QtCore, QtGui, QtWidgets     
 from alarm_logs_Ui import Ui_alarm_logs
 from domain.domain_patient import PatientDetail, alarm_log
 from graph_Ui import Graph_Screen_UI
@@ -10,13 +10,15 @@ import websocket_handler
 import set_temp
 from modes_Ui import Ui_mode_screen
 from domain.domain_settings import metricDetailsType, settingsDetailsType
-
+from notification import Notification_Ui 
+from PyQt5.QtWidgets import QGraphicsDropShadowEffect
+from PyQt5.QtGui import QColor
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1151, 900)
+        MainWindow.resize(1151, 1000)
         MainWindow.setStyleSheet("#main_screen{\n"
                                  "background:#ffffff;\n"
                                  "}\n"
@@ -80,6 +82,29 @@ class Ui_MainWindow(object):
         self.Header.show()
 
         self.verticalLayout.addWidget(self.Header)
+       
+
+        self.notification = QtWidgets.QWidget(MainWindow)
+        self.notification.setContentsMargins(0,5,0,0)
+        self.notification.setStyleSheet("background:transparent;") 
+        self.notification_ui=Notification_Ui()
+        self.notification_ui.setupUi(self.notification)
+        self.notification.show()
+        self.verticalLayout.addWidget(self.Header)
+        shadow_effect = QGraphicsDropShadowEffect()
+        shadow_effect.setBlurRadius(10)
+        shadow_effect.setColor(QColor("#FF0000"))  
+        shadow_effect.setOffset(0, 0)  
+        self.notification.setGraphicsEffect(shadow_effect)
+        self.notification.setGeometry((MainWindow.width()-500)//2,MainWindow.height()-100-10,500,100)
+
+
+       
+        self.verticalMainScreen = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalMainScreen.setContentsMargins(0, 0, 0, 0)
+        self.verticalMainScreen.setSpacing(0)
+        self.verticalMainScreen.setObjectName("verticleLayoutScreenMain")
+
 
         self.Main_screen_container = QtWidgets.QWidget(self.centralwidget)
         self.Main_screen_container.setObjectName("Main_screen_container")
@@ -141,6 +166,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_8.addWidget(self.main_screen)
         self.horizontalLayout.addWidget(self.stacked_pages_container)
+    
 
          #------------person_data_logs---------#
         self.personlogs_screen = QtWidgets.QWidget()
@@ -166,6 +192,9 @@ class Ui_MainWindow(object):
         
         self.horizontalLayout.addWidget(self.right_sidebar)
         self.verticalLayout.addWidget(self.Main_screen_container)
+        #self.verticalLayout.addWidget(self.notification)
+        #self.verticalMainScreen.addWidget(self.Main_screen_container)
+        #self.verticalMainScreen.addWidget(self.notification)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)

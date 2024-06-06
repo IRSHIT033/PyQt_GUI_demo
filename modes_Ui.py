@@ -30,7 +30,7 @@ class Ui_mode_screen(object):
         self.mode_navigation_container.setFont(font)
         self.mode_navigation_container.setObjectName("mode_navigation_container")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.mode_navigation_container)
-        self.horizontalLayout_2.setContentsMargins(-1, -1, -1, 20)
+        self.horizontalLayout_2.setContentsMargins(-1, -1, -1, 40)
         self.horizontalLayout_2.setSpacing(20)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.auto_mode_btn = QtWidgets.QPushButton(self.mode_navigation_container)
